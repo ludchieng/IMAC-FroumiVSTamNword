@@ -1,0 +1,6 @@
+/* this pins the drawing canvas to the top/right hand corner of our page */
+canvas {
+    position: absolute;
+    top:0px;
+    left:0px;
+}
