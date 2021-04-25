@@ -3,12 +3,14 @@ class TileMap {
   constructor() {
     this.X = 75;  // in pixels
     this.Y = 140; // in pixels
+    this.SIZE_X = 12;
+    this.SIZE_Y = 7;
     this.TILE_SIZE = 70;
     this.tiles = [];
 
-    for (let i = 0; i < 12; i++) {
+    for (let i = 0; i < this.SIZE_X; i++) {
       this.tiles.push([]);
-      for (let j = 0; j < 5; j++) {
+      for (let j = 0; j < this.SIZE_Y; j++) {
         let t = new Tile(i, j);
         t.sprite.position.x = this.X + this.TILE_SIZE * i;
         t.sprite.position.y = this.Y + this.TILE_SIZE * j;
@@ -23,12 +25,18 @@ class TileMap {
   }
 
   setPlantFromSelector(i, j) {
-      const SelectedPlantClass= selector.getSelected();
-      this.get(i, j).plant = new SelectedPlantClass(i, j);
+    const SelectedPlantClass= selector.getSelected();
+    this.get(i, j).plant = new SelectedPlantClass(i, j);
   }
 
   update() {
-    
+    for (let col of this.tiles) {
+      for (let t of col) {
+        if (t.plant) {
+          t.plant.update();
+        }
+      }
+    }
   }
   
   render() {

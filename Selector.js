@@ -40,7 +40,7 @@ class Selector {
   }
 
   getSelectedPrice() {
-    return (new this.plants[this.selected]()).price;
+    return (new this.plants[this.selected]()).PRICE;
   }
   
 }

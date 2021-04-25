@@ -1,21 +1,19 @@
 class Player {
 
   constructor() {
-    this.balance = 150;
+    this.balance = 500;
     console.log("balance: ", this.balance);
   }
 
   canBuy(plant) {
-    return this.balance >= plant.price;
+    return this.balance >= plant.PRICE;
   }
 
   pay(price) {
     if (this.balance >= price) {
       player.balance -= price;
-      console.log("balance: ", this.balance);
       return true;
     }
-    console.log("balance: ", this.balance);
     return false;
   }
 
@@ -27,7 +25,7 @@ class Player {
     fill('#fff')
     textSize(24)
     textAlign(RIGHT)
-    text(this.balance.toString(), 15, 25, 50)
+    text(this.balance+'', 15, 25, 50)
   }
 
 }
