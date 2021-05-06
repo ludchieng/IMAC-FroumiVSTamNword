@@ -4,7 +4,7 @@ class ZombiesArmy {
     this.ROUNDS_COMPOSITION = [
       [2, 5, 10], [5, 12, 12], [5, 7, 17, 22], [50]
     ];
-    this.TIME_INTER_WAVE = 20;
+    this.TIME_INTER_WAVE = 150;
     this.round = {
       number: 0,
       wave: 0,
@@ -61,17 +61,17 @@ class ZombiesArmy {
   }
 
   shallCreateZombie() {
-    console.log(
-      this.round.number,
-      this.round.wave,
-      this.round.waveZombie,
-    )
-    console.log(
-      this.isLastWave() && this.isLastWaveZombie() && this.zombies.length > 0,
-      this.isLastWave(),
-      this.isLastWaveZombie(),
-      this.zombies.length > 0
-    )
+    // console.log(
+    //   this.round.number,
+    //   this.round.wave,
+    //   this.round.waveZombie,
+    // )
+    // console.log(
+    //   this.isLastWave() && this.isLastWaveZombie() && this.zombies.length > 0,
+    //   this.isLastWave(),
+    //   this.isLastWaveZombie(),
+    //   this.zombies.length > 0
+    // )
     return !this.hasNoMoreZombies
       && this.interWaveCooldown == 0
       && !(this.isLastWave() && this.isLastWaveZombie() && this.zombies.length > 0)
