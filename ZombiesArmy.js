@@ -4,14 +4,15 @@ class ZombiesArmy {
     this.ROUNDS_COMPOSITION = [
       [2, 5, 10], [5, 12, 12], [5, 7, 17, 22], [50]
     ];
-    this.TIME_INTER_WAVE = 150;
+    this.TIME_INTER_WAVES = 150;
+    this.TIME_INTER_ZOMBIES = 20;
     this.round = {
       number: 0,
       wave: 0,
       waveZombie: 0,
     };
     this.zombies = [];
-    this.interWaveCooldown = this.TIME_INTER_WAVE;
+    this.interWaveCooldown = this.TIME_INTER_WAVES;
     this.hasNoMoreZombies = false;
   }
 
@@ -75,13 +76,13 @@ class ZombiesArmy {
     return !this.hasNoMoreZombies
       && this.interWaveCooldown == 0
       && !(this.isLastWave() && this.isLastWaveZombie() && this.zombies.length > 0)
-      && frameCount % 1 == 0;
+      && frameCount % this.TIME_INTER_ZOMBIES == 0;
   }
 
   incrementZombieCounter() {
     if (this.isLastWaveZombie()) {
       this.round.waveZombie = -1;
-      this.interWaveCooldown = this.TIME_INTER_WAVE;
+      this.interWaveCooldown = this.TIME_INTER_WAVES;
 
       if (this.isLastWave()) {
         this.round.wave = -1;
