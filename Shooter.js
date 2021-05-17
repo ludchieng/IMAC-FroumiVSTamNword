@@ -1,15 +1,8 @@
-class Shooter {
+class Shooter extends Plant {
 
   constructor(i, j) {
-    this.i = i;
-    this.j = j;
-    this.PRICE = 100;
-    this.sprite = createSprite(0, 0, 50, 50);
-    // this.sprite = loadImage('assets/froumi.png');
-    this.sprite.position = tilemap.AbsPosFromIJ(i, j);
-    this.health = 150;
-    this.balls = []
-    this.isDead = false;
+    super(i,j,100,150,"Shooter");
+    this.balls = [];
   }
 
   getHit(d) {
@@ -33,7 +26,6 @@ class Shooter {
     }
     if(frameCount % 25 == 0 && !this.isDead) {
       this.shoot();
-      //console.log("SHOOT");
     }
   }
 

@@ -34,6 +34,11 @@ class TileMap {
       for (let t of col) {
         if (t.plant) {
           t.plant.update();
+          if (t.plant.isDead) {
+            // this.tiles.splice()
+            //FAUT TROUVER L'INDEX PTDR
+            // POUR GERER SES GRANDS MORT
+          }
         }
       }
     }

@@ -23,7 +23,6 @@ class Zombie {
   collide() {
     for(let col of tilemap.tiles) {
       for(let t of col) {
-        console.log(t);
         if(t.hasPlant()) {
           if(this.sprite.overlap(t.plant.sprite)) {
             t.plant.getHit(this.atk);
