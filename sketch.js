@@ -3,9 +3,10 @@ let tilemap;
 let player;
 let zombiesArmy;
 let gController;
+const FRAMERATE = 60;
 
 function setup() {
-  frameRate(25);
+  frameRate(FRAMERATE);
   createCanvas(900, 630);
   selector = new Selector();
   tilemap = new TileMap();

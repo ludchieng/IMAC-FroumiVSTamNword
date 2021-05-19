@@ -13,7 +13,7 @@ class Plant {
     }
 
     getHit(d) {
-        this.health -= d;
+        this.health -= d / FRAMERATE;
         if(this.health <= 0) {
           this.isDead = true;
           this.health = 0;

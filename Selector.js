@@ -35,11 +35,15 @@ class Selector {
     drawSprite(this.cursor);
   }
 
+  /**
+   * @returns the class reference of the plant
+   */
   getSelected() {
     return this.plants[this.selected];
   }
 
   getSelectedPrice() {
+    // Instanciate a plant to get its price
     return (new this.plants[this.selected]()).PRICE;
   }
   

@@ -4,7 +4,7 @@ class ZombiesArmy {
     this.ROUNDS_COMPOSITION = [
       [2, 5, 10], [5, 12, 12], [5, 7, 17, 22], [50]
     ];
-    this.TIME_INTER_WAVES = 150;
+    this.TIME_INTER_WAVES = 0;
     this.TIME_INTER_ZOMBIES = 20;
     this.round = {
       number: 0,
@@ -13,7 +13,6 @@ class ZombiesArmy {
     };
     this.zombies = [];
     this.interWaveCooldown = this.TIME_INTER_WAVES;
-    this.hasNoMoreZombies = false;
   }
 
   update() {
@@ -28,17 +27,10 @@ class ZombiesArmy {
     }
     
     // Update zombies
-    for (let i = 0; i < this.zombies.length; ) {
-      this.zombies[i].update();
-      if (this.zombies[i].isDead)
-        this.zombies.splice(i, 1)
-      else
-        i++
-    }
-
-    // Check for end
-    if (this.isLastRound() && this.zombies.length > 0) {
-      this.hasNoMoreZombies = true;
+    for (const z of this.zombies) {
+      z.update();
+      if (z.isDead)
+        this.removeZombie(z);
     }
   }
 
@@ -47,13 +39,20 @@ class ZombiesArmy {
       z.render();
   }
 
-  createZombie(linesArray) {
+  /**
+   * Summon a zombie on a random line
+   * @param {array|number|undefined} lineOrLinesArray line indexes to summon the zombie on
+   */
+  createZombie(lineOrLinesArray) {
     let line;
-    if (!isNaN(linesArray)) {
-      line = linesArray
-    } else if (Array.isArray(linesArray)) {
-      line = Proba.pickUniformlyFrom(linesArray)
+    if (!isNaN(lineOrLinesArray)) {
+      // Get line
+      line = lineOrLinesArray
+    } else if (Array.isArray(lineOrLinesArray)) {
+      // Get linesArray
+      line = Proba.pickUniformlyFrom(lineOrLinesArray)
     } else {
+      // Ignore lineOrLinesArray
       line = Proba.pickUniformlyFrom(Array.from(Array(tilemap.SIZE_Y).keys()))
     }
     this.zombies.push(new Zombie(tilemap.SIZE_X + 1, line ));
@@ -73,11 +72,16 @@ class ZombiesArmy {
     //   this.isLastWaveZombie(),
     //   this.zombies.length > 0
     // )
-    return !this.hasNoMoreZombies
+    return !this.hasNoMoreZombies()
       && this.interWaveCooldown == 0
       && !(this.isLastWave() && this.isLastWaveZombie() && this.zombies.length > 0)
       && frameCount % this.TIME_INTER_ZOMBIES == 0;
   }
+
+  removeZombie(z) {
+    z.sprite.remove();
+    this.zombies.remove(z);
+  } 
 
   incrementZombieCounter() {
     if (this.isLastWaveZombie()) {
@@ -91,6 +95,10 @@ class ZombiesArmy {
       this.round.wave++;
     }
     this.round.waveZombie++;
+  }
+ 
+  hasNoMoreZombies() {
+    return this.isLastRound() && this.zombies.isEmpty();
   }
 
   isLastWaveZombie() {

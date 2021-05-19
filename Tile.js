@@ -11,15 +11,35 @@ class Tile {
     this.sprite.onMouseReleased = () => handleTileClick(this.i, this.j);
   }
 
+  update() {
+    if (this.hasPlant()) {
+      this.plant.update();
+      if (this.plant.isDead)
+        this.removePlant();
+    }
+  }
+
+  render() {
+    if (!this.hasPlant()) {
+      this.shapeColor = color(200, 200, 50, 50);
+      if (this.mouseIsOver)
+        this.shapeColor = color(70, 200, 50, 50);
+      else
+        this.shapeColor = color(20, 50, 200, 50);
+    } else {
+      this.shapeColor = color(0, 0, 0, 0);
+      this.plant.render();
+    }
+    drawSprite(this.sprite);
+  }
+
   hasPlant() {
     return !(!this.plant);
   }
 
-  update() {
-    
-  }
-
-  render() {
+  removePlant() {
+    this.plant.sprite.remove();
+    this.plant = null;
   }
 
 }

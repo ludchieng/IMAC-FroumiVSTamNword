@@ -1,7 +1,7 @@
 class Zombie {
 
   constructor(i, j) {
-    this.SPEED = 4;
+    this.SPEED = 100 / FRAMERATE;
     this.i = i;
     this.j = j;
     this.sprite = createSprite(0, 0, 50, 50);
@@ -25,8 +25,8 @@ class Zombie {
       for(let t of col) {
         if(t.hasPlant()) {
           if(this.sprite.overlap(t.plant.sprite)) {
-            t.plant.getHit(this.atk);
             this.cx = 0;
+            t.plant.getHit(this.atk);
           } else {
             this.cx = -this.SPEED;
           }

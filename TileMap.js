@@ -32,14 +32,7 @@ class TileMap {
   update() {
     for (let col of this.tiles) {
       for (let t of col) {
-        if (t.plant) {
-          t.plant.update();
-          if (t.plant.isDead) {
-            // this.tiles.splice()
-            //FAUT TROUVER L'INDEX PTDR
-            // POUR GERER SES GRANDS MORT
-          }
-        }
+        t.update();
       }
     }
   }
@@ -47,17 +40,7 @@ class TileMap {
   render() {
     for (let col of this.tiles) {
       for (let t of col) {
-        if (!t.plant) {
-          t.shapeColor = color(200, 200, 50, 50);
-          if (t.mouseIsOver)
-            t.shapeColor = color(70, 200, 50, 50);
-          else
-            t.shapeColor = color(20, 50, 200, 50);
-        } else {
-          t.shapeColor = color(0, 0, 0, 0);
-          t.plant.render();
-        }
-        drawSprite(t.sprite);
+        t.render();
       }
     }
   }
