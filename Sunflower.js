@@ -1,21 +1,24 @@
 class Sunflower extends Plant {
 
   constructor(i, j) {
-    super(i,j,50,50,"Sunflower");
-
-    this.MAX_COOLDOWN = 10 * getFrameRate();
-    this.cooldown = this.MAX_COOLDOWN;
+    super(i,j,50,150);
     this.GAIN = 50;
+
+    this.gainTrigger = new PoissonDrivenTrigger(
+      20 * FRAMERATE,
+      3 * FRAMERATE,
+      30 * FRAMERATE,
+      3 * FRAMERATE,
+      () => {
+        if(this.isDead())
+          return;
+        player.balance += this.GAIN;
+      }
+    );
   }
 
   update() {
-    if (this.cooldown <= 0) {
-      if (Math.random() > .994) {
-        player.balance += this.GAIN;
-      }
-    } else {
-      this.cooldown--;
-    }
+    this.gainTrigger.update();
   }
 
   render() {

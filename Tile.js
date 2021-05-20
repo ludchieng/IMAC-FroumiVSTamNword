@@ -14,7 +14,7 @@ class Tile {
   update() {
     if (this.hasPlant()) {
       this.plant.update();
-      if (this.plant.isDead)
+      if (this.plant.isDead())
         this.removePlant();
     }
   }

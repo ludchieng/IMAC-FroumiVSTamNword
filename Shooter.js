@@ -1,21 +1,21 @@
 class Shooter extends Plant {
 
   constructor(i, j) {
-    super(i,j,100,150,"Shooter");
+    super(i,j,100,200);
     this.balls = [];
-  }
 
-  getHit(d) {
-    this.health -= d;
-    if(this.health <= 0) {
-      this.isDead = true;
-      this.health = 0;
-    }
-  }
-
-  shoot() {
-    let b = new Ball(this.i, this.j);
-    this.balls.push(b);
+    this.shootTrigger = new PoissonDrivenTrigger(
+      0.2 * FRAMERATE,
+      1.5 * FRAMERATE,
+      2.5 * FRAMERATE,
+      1.5 * FRAMERATE,
+      () => {
+        if(this.isDead())
+          return;
+        let b = new Ball(this.i, this.j);
+        this.balls.push(b);
+      }
+    );
   }
 
   update() {
@@ -24,9 +24,7 @@ class Shooter extends Plant {
         this.balls.splice(this.balls.indexOf(b),1);
       b.update();
     }
-    if(frameCount % 25 == 0 && !this.isDead) {
-      this.shoot();
-    }
+    this.shootTrigger.update();
   }
 
   render() {
