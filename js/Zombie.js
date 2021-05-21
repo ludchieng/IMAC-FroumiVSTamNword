@@ -8,7 +8,7 @@ class Zombie {
     this.sprite = createSprite(100, 50, 60, 60);
     this.sprite.addImage(loadImage('assets/tamnword.png'));
     this.sprite.position = tilemap.AbsPosFromIJ(i, j);
-    this.health = 100;
+    this.health = 200;
     this.atk = 35;
     this.cx = -this.SPEED;
     this.state = this.STATES.MOVING;

@@ -10,12 +10,17 @@ class Shooter extends Plant {
       2.5 * FRAMERATE,
       1.5 * FRAMERATE,
       () => {
+        // Shoot
         if(this.isDead())
           return;
-        let b = new Ball(this.i, this.j);
+        let b = new Ball(this.i, this.j, 50, 0);
         this.balls.push(b);
       }
     );
+  }
+
+  shoot() {
+    
   }
 
   update() {

@@ -12,6 +12,7 @@ class Sunflower extends Plant {
       40 * FRAMERATE,
       1 * FRAMERATE,
       () => {
+        // Give money to player
         if(this.isDead())
           return;
         player.balance += this.GAIN;

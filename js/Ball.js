@@ -1,6 +1,6 @@
 class Ball {
 
-    constructor(i, j, cy) {
+    constructor(i, j, atk, cy) {
       this.i = i;
       this.j = j;
       this.cx = 10;
@@ -8,7 +8,7 @@ class Ball {
       this.sprite = createSprite(0, 0, 50, 50);
       this.sprite.addAnimation('moving', TEX_ANIM_BALL);
       this.sprite.position = tilemap.AbsPosFromIJ(i, j);
-      this.atk = 50;
+      this.atk = atk;
       this.hasHitSomething = false;
     }
 

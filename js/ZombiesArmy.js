@@ -1,29 +1,69 @@
 class ZombiesArmy {
   
   constructor() {
-    this.ROUNDS_COMPOSITION = [
-      [2, 5, 10], [5, 12, 12], [5, 7, 17, 22], [50]
-    ];
     this.TIME_INTER_WAVES = 5 * FRAMERATE;
     this.TIME_INTER_ZOMBIES = 1 * FRAMERATE;
-    this.round = {
-      number: 0,
-      wave: 0,
-      waveZombie: 0,
-    };
+    this.STATES = { STANDBY: -1, INTERZOMBIE:0, INTERWAVE:1, INTERROUND:2 }
+
+    this.state = this.STATES.STANDBY;
     this.zombies = [];
-    this.interWaveCooldown = this.TIME_INTER_WAVES;
+    //this.summonerTrigger = this.createSummoner();
+
+    this.cooldown = this.createCooldownstandby();
+    this.zCounter = new ZombiesCounter(() => {
+      // onNextRound
+      this.state = this.STATES.INTERROUND;
+      this.cooldown = this.createCooldownRound();
+    },() => {
+      // onNextWave
+      this.state = this.STATES.INTERWAVE;
+      this.cooldown = this.createCooldownWave();
+    });
+  }
+
+  createCooldownstandby() {
+    return 2 * FRAMERATE;
+  }
+
+  createCooldownZombie() {
+    return Proba.poissonDriven(2 * FRAMERATE, 0.1 * FRAMERATE, 5 * FRAMERATE, 0.1 * FRAMERATE);
+  }
+
+  createCooldownWave() {
+    return Proba.poissonDriven(8 * FRAMERATE, 7 * FRAMERATE, 20 * FRAMERATE, 7 * FRAMERATE);
+  }
+
+  createCooldownRound() {
+    return Proba.poissonDriven(5 * FRAMERATE, 4 * FRAMERATE, 22 * FRAMERATE, 4 * FRAMERATE);
   }
 
   update() {
-    // Check for inter wave
-    if (this.interWaveCooldown > 0) {
-      this.interWaveCooldown--;
-    } else {
-      // Check for zombie to create
-      if (this.round.number >= 0 && this.shallCreateZombie()) {
-        this.createZombie();
-      }
+    switch (this.state) {
+      case this.STATES.STANDBY:
+        if (this.cooldown-- <= 0) {
+          this.state = this.STATES.INTERZOMBIE;
+          console.log('if standby', this.state, this.cooldown)
+        }
+        break;
+
+      case this.STATES.INTERZOMBIE:
+        if (this.cooldown-- <= 0 && this.zCounter.hasNext()) {
+          this.summonZombie();
+          this.cooldown = this.createCooldownZombie();
+          this.zCounter.increment();
+          console.log('next zombie in', this.cooldown, 'frames')
+        }
+        break;
+
+      case this.STATES.INTERWAVE:
+        if (this.cooldown-- <= 0)
+          this.state = this.STATES.INTERZOMBIE;
+        break;
+
+      case this.STATES.INTERROUND:
+        if (this.cooldown-- <= 0 && this.zombies.length === 0)
+          this.state = this.STATES.INTERZOMBIE;
+        break;
     }
     
     // Update zombies
@@ -43,7 +83,7 @@ class ZombiesArmy {
    * Summon a zombie on a random line
    * @param {array|number|undefined} lineOrLinesArray line indexes to summon the zombie on
    */
-  createZombie(lineOrLinesArray) {
+  summonZombie(lineOrLinesArray) {
     let line;
     if (!isNaN(lineOrLinesArray)) {
       // Get line
@@ -56,60 +96,7 @@ class ZombiesArmy {
       line = Proba.pickUniformlyFrom(Array.from(Array(tilemap.SIZE_Y).keys()))
     }
     this.zombies.push(new Zombie(tilemap.SIZE_X + 1, line ));
-    
-    this.incrementZombieCounter();
-  }
+    // this.incrementZombieCounter();
+  }z
 
-  shallCreateZombie() {
-    // console.log(
-    //   this.round.number,
-    //   this.round.wave,
-    //   this.round.waveZombie,
-    // )
-    // console.log(
-    //   this.isLastWave() && this.isLastWaveZombie() && this.zombies.length > 0,
-    //   this.isLastWave(),
-    //   this.isLastWaveZombie(),
-    //   this.zombies.length > 0
-    // )
-    return !this.hasNoMoreZombies()
-      && this.interWaveCooldown == 0
-      && !(this.isLastWave() && this.isLastWaveZombie() && this.zombies.length > 0)
-      && frameCount % this.TIME_INTER_ZOMBIES == 0;
-  }
-
-  incrementZombieCounter() {
-    if (this.isLastWaveZombie()) {
-      this.round.waveZombie = -1;
-      this.interWaveCooldown = this.TIME_INTER_WAVES;
-
-      if (this.isLastWave()) {
-        this.round.wave = -1;
-        this.round.number++;
-      }
-      this.round.wave++;
-    }
-    this.round.waveZombie++;
-  }
- 
-  hasNoMoreZombies() {
-    return this.isLastRound() && this.zombies.isEmpty();
-  }
-
-  isLastWaveZombie() {
-    if (this.round.number < this.ROUNDS_COMPOSITION.length)
-      if (this.round.wave < this.ROUNDS_COMPOSITION[this.round.number].length)
-        return this.round.waveZombie >= this.ROUNDS_COMPOSITION[this.round.number][this.round.wave]-1
-    return false;
-  }
-
-  isLastWave() {
-    if (this.round.number < this.ROUNDS_COMPOSITION.length)
-      return this.round.wave >= this.ROUNDS_COMPOSITION[this.round.number].length-1;
-    return false;
-  }
-
-  isLastRound() {
-    return this.round.number >= this.ROUNDS_COMPOSITION.length;
-  }
 }
