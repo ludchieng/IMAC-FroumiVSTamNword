@@ -4,8 +4,8 @@ class ZombiesArmy {
     this.ROUNDS_COMPOSITION = [
       [2, 5, 10], [5, 12, 12], [5, 7, 17, 22], [50]
     ];
-    this.TIME_INTER_WAVES = 1 * FRAMERATE;
-    this.TIME_INTER_ZOMBIES = 5 * FRAMERATE;
+    this.TIME_INTER_WAVES = 5 * FRAMERATE;
+    this.TIME_INTER_ZOMBIES = 1 * FRAMERATE;
     this.round = {
       number: 0,
       wave: 0,

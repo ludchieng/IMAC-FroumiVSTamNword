@@ -7,9 +7,9 @@ class Sunflower extends Plant {
     this.sprite.addImage(loadImage('assets/sunflower.png'));
 
     this.gainTrigger = new PoissonDrivenTrigger(
-      10 * FRAMERATE,
-      1 * FRAMERATE,
       30 * FRAMERATE,
+      1 * FRAMERATE,
+      40 * FRAMERATE,
       1 * FRAMERATE,
       () => {
         if(this.isDead())

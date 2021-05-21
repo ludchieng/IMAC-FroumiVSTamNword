@@ -24,7 +24,7 @@ class Player {
     fill('#fff')
     textSize(24)
     textAlign(RIGHT)
-    text(this.balance+'', 15, 25, 150)
+    text(this.balance+'', 15, 38, 80)
   }
 
 }

@@ -1,7 +1,7 @@
 class Selector {
   
   constructor() {
-    this.X = 210;
+    this.X = 150;
     this.Y = 50;
     this.KEYS = ['a','z','e','r','q','s','d','f','g'];
     this.PLANTS = [Sunflower, ShooterNormal, ShooterRebou];

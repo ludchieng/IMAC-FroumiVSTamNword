@@ -20,7 +20,6 @@ class GameController {
     tilemap.render();
     player.render();
     zombiesArmy.render();
-    // drawSprites();
   }
   
 }
