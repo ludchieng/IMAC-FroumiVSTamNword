@@ -21,5 +21,9 @@ class Plant {
         return this.health <= 0;
     }
 
+    update() { 
+        if (this.isDead())
+            this.sprite.remove();
+    }
     
 }
