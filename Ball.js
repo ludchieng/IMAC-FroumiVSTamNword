@@ -4,7 +4,7 @@ class Ball {
       this.i = i;
       this.j = j;
       this.cx = 10;
-      this.cy = 0; // LOI DE PROBA
+      this.cy = Proba.normalDriven(0, .5, -1.5, 1.5);
       this.sprite = createSprite(0, 0, 50, 50);
       this.sprite.position = tilemap.AbsPosFromIJ(i, j);
       this.atk = 50;

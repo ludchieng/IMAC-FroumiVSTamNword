@@ -3,8 +3,8 @@ class Selector {
   constructor() {
     this.X = 110;
     this.Y = 50;
-    this.keys = ['a','z','e','r','q','s','d','f','g'];
-    this.plants = [Sunflower, Shooter];
+    this.KEYS = ['a','z','e','r','q','s','d','f','g'];
+    this.PLANTS = [Sunflower, Shooter];
     this.options = new Group();
 
     this.cursor = createSprite(this.X, this.Y, 60, 80);
@@ -13,7 +13,7 @@ class Selector {
     this.selected = 0;
     
     let count = 0;
-    for (let i=0; i<this.plants.length; i++) {
+    for (let i=0; i<this.PLANTS.length; i++) {
       let s = createSprite(this.X + 60 * count++, this.Y, 58, 80);
       s.shapeColor = color(222, 125, 2);
       s.addToGroup(this.options);
@@ -22,8 +22,8 @@ class Selector {
 
   update() {
     let count = 0;
-    for (let i=0; i<this.plants.length; i++) {
-      if (keyWentDown(this.keys[i]) && count < this.options.length)
+    for (let i=0; i<this.PLANTS.length; i++) {
+      if (keyWentDown(this.KEYS[i]) && count < this.options.length)
         this.selected = count;
       count++;
     }
@@ -39,12 +39,12 @@ class Selector {
    * @returns the class reference of the plant
    */
   getSelected() {
-    return this.plants[this.selected];
+    return this.PLANTS[this.selected];
   }
 
   getSelectedPrice() {
     // Instanciate a plant to get its price
-    return (new this.plants[this.selected]()).PRICE;
+    return (new this.PLANTS[this.selected]()).PRICE;
   }
   
 }
