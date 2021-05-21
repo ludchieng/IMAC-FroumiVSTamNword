@@ -21,7 +21,7 @@ class Tile {
   }
 
   render() {
-    drawSprite(this.sprite);   
+    // drawSprite(this.sprite);   
     if (!this.hasPlant()) {
       this.shapeColor = color(200, 200, 50, 50);
       if (this.mouseIsOver)

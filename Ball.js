@@ -1,12 +1,12 @@
 class Ball {
 
-    constructor(i, j) {
+    constructor(i, j, cy) {
       this.i = i;
       this.j = j;
       this.cx = 10;
-      this.cy = Proba.normalDriven(0, .5, -1.5, 1.5);
+      this.cy = cy;
       this.sprite = createSprite(0, 0, 50, 50);
-      this.sprite.addImage(loadImage('assets/tamnwordz.png'));
+      this.sprite.addAnimation(ANIMATION_BALL);
       this.sprite.position = tilemap.AbsPosFromIJ(i, j);
       this.atk = 50;
     }
@@ -31,14 +31,9 @@ class Ball {
     update() {
         this.move();
         this.collide();
-        //console.log(this.i + " " + this.j);
     }
   
     render() {
-        // this.drawSprite();
-        // rectMode(CENTER);
-        // circle(this.sprite.position.x, this.sprite.position.y , 10);
-        // rectMode(CORNER);
+        animation(ANIMATION_BALL, this.sprite.position.x, this.sprite.position.y);
     }
-
 }

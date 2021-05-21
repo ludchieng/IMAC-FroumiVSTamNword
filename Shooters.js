@@ -1,10 +1,8 @@
-class Shooter extends Plant {
+class Shooters extends Plant {
 
-  constructor(i, j) {
-    super(i,j,100,200);
+  constructor(i, j, price) {
+    super(i,j,price,200);
     this.balls = [];
-
-    this.sprite.addImage(loadImage('assets/froumi.png'));
 
     this.shootTrigger = new PoissonDrivenTrigger(
       0.2 * FRAMERATE,
@@ -30,9 +28,6 @@ class Shooter extends Plant {
   }
 
   render() {
-    // rectMode(CENTER);
-    // rect(this.sprite.position.x, this.sprite.position.y , 50, 50);
-    // rectMode(CORNER);
     drawSprite(this.sprite);
 
     for(let b of this.balls) {
@@ -40,5 +35,4 @@ class Shooter extends Plant {
     }
 
   }
-
 }

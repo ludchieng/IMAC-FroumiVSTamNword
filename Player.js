@@ -2,7 +2,6 @@ class Player {
 
   constructor() {
     this.balance = 500;
-    console.log("balance: ", this.balance);
   }
 
   canBuy(plant) {
@@ -25,7 +24,7 @@ class Player {
     fill('#fff')
     textSize(24)
     textAlign(RIGHT)
-    text(this.balance+'', 15, 25, 50)
+    text(this.balance+'', 15, 25, 150)
   }
 
 }
