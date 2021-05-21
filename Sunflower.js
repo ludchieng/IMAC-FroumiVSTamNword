@@ -4,6 +4,8 @@ class Sunflower extends Plant {
     super(i,j,50,150);
     this.GAIN = 50;
 
+    this.sprite.addImage(loadImage('assets/froumivener.png'));
+
     this.gainTrigger = new PoissonDrivenTrigger(
       20 * FRAMERATE,
       3 * FRAMERATE,
@@ -23,6 +25,7 @@ class Sunflower extends Plant {
   }
 
   render() {
-    ellipse(this.sprite.position.x, this.sprite.position.y , 50, 50);
+    // ellipse(this.sprite.position.x, this.sprite.position.y , 50, 50);
+    drawSprite(this.sprite);
   }
 }

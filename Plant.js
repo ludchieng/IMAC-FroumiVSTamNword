@@ -5,7 +5,7 @@ class Plant {
 
         this.PRICE = price;
 
-        this.sprite = createSprite(0, 0, 50, 50);
+        this.sprite = createSprite(tilemap.AbsPosFromIJ(i,j).x, tilemap.AbsPosFromIJ(i,j).y, 50, 50);
         this.sprite.position = tilemap.AbsPosFromIJ(i, j);
         this.health = hp;
     }

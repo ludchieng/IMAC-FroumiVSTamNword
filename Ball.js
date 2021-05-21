@@ -6,6 +6,7 @@ class Ball {
       this.cx = 10;
       this.cy = Proba.normalDriven(0, .5, -1.5, 1.5);
       this.sprite = createSprite(0, 0, 50, 50);
+      this.sprite.addImage(loadImage('assets/tamnwordz.png'));
       this.sprite.position = tilemap.AbsPosFromIJ(i, j);
       this.atk = 50;
       this.hasHitSomething = false;
@@ -37,9 +38,10 @@ class Ball {
     }
   
     render() {
-      rectMode(CENTER);
-      circle(this.sprite.position.x, this.sprite.position.y , 10);
-      rectMode(CORNER);
+        // this.drawSprite();
+        // rectMode(CENTER);
+        // circle(this.sprite.position.x, this.sprite.position.y , 10);
+        // rectMode(CORNER);
     }
 
 }

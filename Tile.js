@@ -4,8 +4,9 @@ class Tile {
     this.i = i;
     this.j = j;
     this.plant = null;
-    this.sprite = createSprite(0, 0, 68, 68);
-    this.sprite.shapeColor = color(70, 200, 50, 20);
+    this.sprite = createSprite(0, 0, 70, 70);
+    this.sprite.addImage(loadImage('assets/grass.png'));
+    // this.sprite.shapeColor = color(70, 200, 50, 20);
     this.sprite.mouseActive = true;
     this.sprite.setCollider('rectangle', 0, 0, 68, 68);
     this.sprite.onMouseReleased = () => handleTileClick(this.i, this.j);
@@ -20,6 +21,7 @@ class Tile {
   }
 
   render() {
+    drawSprite(this.sprite);   
     if (!this.hasPlant()) {
       this.shapeColor = color(200, 200, 50, 50);
       if (this.mouseIsOver)
@@ -30,7 +32,6 @@ class Tile {
       this.shapeColor = color(0, 0, 0, 0);
       this.plant.render();
     }
-    drawSprite(this.sprite);
   }
 
   hasPlant() {
