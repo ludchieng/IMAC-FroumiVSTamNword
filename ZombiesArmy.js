@@ -30,7 +30,7 @@ class ZombiesArmy {
     for (const z of this.zombies) {
       z.update();
       if (z.isDead())
-        this.removeZombie(z);
+        this.zombies.remove(z);
     }
   }
 
@@ -77,11 +77,6 @@ class ZombiesArmy {
       && !(this.isLastWave() && this.isLastWaveZombie() && this.zombies.length > 0)
       && frameCount % this.TIME_INTER_ZOMBIES == 0;
   }
-
-  removeZombie(z) {
-    z.sprite.remove();
-    this.zombies.remove(z);
-  } 
 
   incrementZombieCounter() {
     if (this.isLastWaveZombie()) {

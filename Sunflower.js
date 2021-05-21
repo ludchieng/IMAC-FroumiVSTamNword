@@ -18,6 +18,7 @@ class Sunflower extends Plant {
   }
 
   update() {
+    super.update();
     this.gainTrigger.update();
   }
 

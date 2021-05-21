@@ -19,9 +19,10 @@ class Shooter extends Plant {
   }
 
   update() {
+    super.update();
     for(let b of this.balls) {
-      if(b.sprite.position.x > width)
-        this.balls.splice(this.balls.indexOf(b),1);
+      if(b.isDead())
+        this.balls.remove(b);
       b.update();
     }
     this.shootTrigger.update();
