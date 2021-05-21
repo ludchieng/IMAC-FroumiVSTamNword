@@ -1,7 +1,7 @@
-class Shooters extends Plant {
+class Shooter extends Plant {
 
   constructor(i, j, price) {
-    super(i,j,price,200);
+    super(i, j, price, 200);
     this.balls = [];
 
     this.shootTrigger = new PoissonDrivenTrigger(
@@ -29,11 +29,9 @@ class Shooters extends Plant {
   }
 
   render() {
-    drawSprite(this.sprite);
-
-    for(let b of this.balls) {
+    super.render();
+    for(let b of this.balls)
       b.render();
-    }
-
   }
+
 }

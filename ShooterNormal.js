@@ -1,4 +1,4 @@
-class ShooterNormal extends Shooters {
+class ShooterNormal extends Shooter {
 
   constructor(i, j) {
     super(i, j, 100);

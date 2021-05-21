@@ -25,5 +25,9 @@ class Plant {
         if (this.isDead())
             this.sprite.remove();
     }
+
+    render() {
+        drawSprite(this.sprite);
+    }
     
 }

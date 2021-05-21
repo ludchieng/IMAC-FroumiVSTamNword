@@ -5,7 +5,6 @@ class Zombie {
     this.STATES = { STOPPED: 0, MOVING: 1, EATING: 2 };
     this.i = i;
     this.j = j;
-    // this.sprite = loadImage('assets/tamnword.png', 171, 158, 11);
     this.sprite = createSprite(100, 50, 60, 60);
     this.sprite.addImage(loadImage('assets/tamnword.png'));
     this.sprite.position = tilemap.AbsPosFromIJ(i, j);
@@ -56,7 +55,7 @@ class Zombie {
 
   update() {
     if (this.isDead())
-        this.sprite.remove();
+      this.sprite.remove();
     this.sprite.position.x += this.cx;
     this.collide();
   }
@@ -66,12 +65,7 @@ class Zombie {
   }
 
   render() {
-    // rectMode(CENTER);
-    // rect(this.sprite.position.x, this.sprite.position.y , 20, 60);
-    // rectMode(CORNER);
-    // this.sprite.position.x -= this.cx;
     drawSprite(this.sprite);
-    
   }
 
 }

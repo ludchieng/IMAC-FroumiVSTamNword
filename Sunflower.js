@@ -23,9 +23,5 @@ class Sunflower extends Plant {
     super.update();
     this.gainTrigger.update();
   }
-
-  render() {
-    // ellipse(this.sprite.position.x, this.sprite.position.y , 50, 50);
-    drawSprite(this.sprite);
-  }
+  
 }
