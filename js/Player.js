@@ -17,7 +17,8 @@ class Player {
   }
 
   update() {
-    
+    if (Proba.uniform() < 1/FRAMERATE/15)
+      this.balance += 50;
   }
 
   render() {

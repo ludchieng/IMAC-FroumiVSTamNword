@@ -7,6 +7,7 @@ class Plant {
 
         this.sprite = createSprite(tilemap.AbsPosFromIJ(i,j).x, tilemap.AbsPosFromIJ(i,j).y, 50, 50);
         this.sprite.position = tilemap.AbsPosFromIJ(i, j);
+        this.sprite.setCollider('rectangle', 0, 0, 30, 30);
         this.health = hp;
     }
 

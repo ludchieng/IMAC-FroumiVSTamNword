@@ -1,17 +1,17 @@
 class ZombiesCounter {
   
-  constructor(onNextRound, onNextWave, onNextZombie) {
+  constructor(onNextRound, onNextWave, onNextGroup) {
     this.ROUNDS_COMPOSITION = [
-      [1000000, 2, 5, 7, 10], [20, 50, 50], [50, 70, 120, 150], [200]
+      [1, 2, 5, 7, 10], [20, 50, 50], [50, 70, 120, 150], [200]
     ];
     this.indices = {
       round: 0,
       wave: 0,   // wave number of the current round
-      zombie: 0, // zombie number of the current wave
+      group: 0, // group number of the current wave
     };
     this.onNextRound = onNextRound;
     this.onNextWave = onNextWave;
-    this.onNextZombie = onNextZombie;
+    this.onNextGroup = onNextGroup;
   }
 
   roundNumber() {
@@ -20,8 +20,8 @@ class ZombiesCounter {
   waveNumber() {
     return this.indices.wave + 1; // because it starts at 0
   }
-  zombieNumber() {
-    return this.indices.zombie + 1; // because it starts at 0
+  groupNumber() {
+    return this.indices.group + 1; // because it starts at 0
   }
 
   roundExpectedCount() {
@@ -30,7 +30,7 @@ class ZombiesCounter {
   waveExpectedCount() {
     return this.ROUNDS_COMPOSITION[this.indices.round].length;
   }
-  zombieExpectedCount() {
+  groupExpectedCount() {
     return this.ROUNDS_COMPOSITION[this.indices.round][this.indices.wave];
   }
 
@@ -47,12 +47,12 @@ class ZombiesCounter {
 
   increment() {
 
-    this.indices.zombie++;
-    if (this.onNextZombie)
-      this.onNextZombie();
+    this.indices.group++;
+    if (this.onNextGroup)
+      this.onNextGroup();
 
-    if (this.indices.zombie === this.zombieExpectedCount()) {
-      this.indices.zombie = 0;
+    if (this.indices.group === this.groupExpectedCount()) {
+      this.indices.group = 0;
       this.indices.wave++;
       if (this.onNextWave)
         this.onNextWave();

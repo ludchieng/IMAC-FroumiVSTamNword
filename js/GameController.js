@@ -1,25 +1,70 @@
 class GameController {
 
   constructor() {
-    
+    this.STATES = { MENU:0, INGAME:1, GAMEOVER:2 };
+    this.state = this.STATES.MENU;
+    this.menu = new Menu();
   }
 
-  handleEvent(e) {
+  handleTileClick(i, j) {
+    if (this.state !== this.STATES.INGAME)
+      return;
 
+    if (!tilemap.get(i, j).hasPlant()) {
+      if (player.pay(selector.getSelectedPrice())) {
+        tilemap.setPlantFromSelector(i, j);
+      }
+    }
+  }
+
+  changeStateTo(state) {
+    switch (state) {
+      case this.STATES.MENU:
+        this.menu.show();
+        break;
+      case this.STATES.INGAME:
+        this.menu.hide();
+        break;
+      case this.STATES.GAMEOVER:
+        break;
+    }
+    this.state = state;
   }
 
   update() {
-    selector.update();
-    tilemap.update();
-    player.update();
-    zombiesArmy.update();
+    switch (this.state) {
+      case this.STATES.MENU:
+        this.menu.update();
+        break;
+      case this.STATES.INGAME:
+        selector.update();
+        tilemap.update();
+        player.update();
+        zombiesArmy.update();
+        break;
+      case this.STATES.GAMEOVER:
+        
+        break;
+    }
   }
 
   render() {
-    selector.render();
-    tilemap.render();
-    player.render();
-    zombiesArmy.render();
+    switch (this.state) {
+      case this.STATES.MENU:
+        this.menu.render();
+        break;
+      case this.STATES.INGAME:
+        background(51);
+        image(TEX.GARDEN, tilemap.X-tilemap.TILE_SIZE/2, tilemap.Y-tilemap.TILE_SIZE/2);
+        selector.render();
+        tilemap.render();
+        player.render();
+        zombiesArmy.render();
+        break;
+      case this.STATES.GAMEOVER:
+        
+        break;
+    }
   }
   
 }

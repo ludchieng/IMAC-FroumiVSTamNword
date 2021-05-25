@@ -1,6 +1,28 @@
 /* this pins the drawing canvas to the top/right hand corner of our page */
 canvas {
-    position: absolute;
-    top:0px;
-    left:0px;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+}
+
+body {
+  background-color: #222;
+}
+
+* {
+  font-size: 26px;
+  font-family: url('https://fonts.googleapis.com/css2?family=Odibee+Sans&display=swap');
+}
+
+#start {
+  padding: 20px 70px;
+  font-size: 34px;
+  border: none;
+  color: #283a21;
+  background-color: #65e034;
+  box-shadow: 0 1px 10px #1d2918;
+}
+
+#start:hover {
+  background-color: #85fc56;
 }

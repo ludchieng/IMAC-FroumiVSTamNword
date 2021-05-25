@@ -8,7 +8,7 @@ class Tile {
     // this.sprite.shapeColor = color(70, 200, 50, 20);
     this.sprite.mouseActive = true;
     this.sprite.setCollider('rectangle', 0, 0, 68, 68);
-    this.sprite.onMouseReleased = () => handleTileClick(this.i, this.j);
+    this.sprite.onMouseReleased = () => gController.handleTileClick(this.i, this.j);
   }
 
   update() {

@@ -7,7 +7,6 @@ class ZombiesArmy {
 
     this.state = this.STATES.STANDBY;
     this.zombies = [];
-    //this.summonerTrigger = this.createSummoner();
 
     this.cooldown = this.createCooldownstandby();
     this.zCounter = new ZombiesCounter(() => {
@@ -42,16 +41,15 @@ class ZombiesArmy {
       case this.STATES.STANDBY:
         if (this.cooldown-- <= 0) {
           this.state = this.STATES.INTERZOMBIE;
-          console.log('if standby', this.state, this.cooldown)
         }
         break;
 
       case this.STATES.INTERZOMBIE:
         if (this.cooldown-- <= 0 && this.zCounter.hasNext()) {
-          this.summonZombie();
+          this.summonZombieGroup();
           this.cooldown = this.createCooldownZombie();
           this.zCounter.increment();
-          console.log('next zombie in', this.cooldown, 'frames')
+          console.log('next zombie group in', this.cooldown, 'frames')
         }
         break;
 
@@ -66,7 +64,6 @@ class ZombiesArmy {
         break;
     }
     
-    // Update zombies
     for (const z of this.zombies) {
       z.update();
       if (z.isDead())
@@ -77,6 +74,14 @@ class ZombiesArmy {
   render() {
     for (const z of this.zombies)
       z.render();
+  }
+
+  summonZombieGroup(lineOrLinesArray) {
+    const count = Proba.poissonDriven(1, 1, 6, 0);
+    if (count > 1) console.log("Summoned", count, "zombies!")
+    for (let i=0; i < count; i++)
+      this.summonZombie(lineOrLinesArray);
+    return count;
   }
 
   /**
@@ -95,8 +100,7 @@ class ZombiesArmy {
       // Ignore lineOrLinesArray
       line = Proba.pickUniformlyFrom(Array.from(Array(tilemap.SIZE_Y).keys()))
     }
-    this.zombies.push(new Zombie(tilemap.SIZE_X + 1, line ));
-    // this.incrementZombieCounter();
+    this.zombies.push(new Zombie(tilemap.SIZE_X, line));
   }
 
 }
