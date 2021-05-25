@@ -2,13 +2,16 @@ class ShooterRebou extends Shooter {
 
   constructor(i, j) {
     super(i, j, 250);
-    this.sprite.addAnimation('vener', TEX_ANIM_FROUMI_VENER);
+    this.sprite.addAnimation('vener', TEX.FROUMI_VENER);
 
-    this.shootTrigger = new PoissonDrivenTrigger(
-      0.2 * FRAMERATE,
-      .5 * FRAMERATE,
-      2.5 * FRAMERATE,
-      .5 * FRAMERATE,
+    this.shootTrigger = new Trigger(
+      () => (
+        Proba.poissonDriven(
+          .2 * FRAMERATE,
+          .5 * FRAMERATE,
+          2.5 * FRAMERATE,
+          .5 * FRAMERATE)
+    ),
       () => {
         // Shoot
         if(this.isDead())

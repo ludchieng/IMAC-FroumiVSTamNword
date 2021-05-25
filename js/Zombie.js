@@ -6,7 +6,7 @@ class Zombie {
     this.i = i;
     this.j = j;
     this.sprite = createSprite(100, 50, 60, 60);
-    this.sprite.addImage(loadImage('assets/tamnword.png'));
+    this.sprite.addImage(TEX.TAMNWORD);
     this.sprite.position = tilemap.AbsPosFromIJ(i, j);
     this.health = 200;
     this.atk = 35;

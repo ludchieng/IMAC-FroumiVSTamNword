@@ -6,7 +6,7 @@ class Ball {
       this.cx = 10;
       this.cy = cy;
       this.sprite = createSprite(0, 0, 50, 50);
-      this.sprite.addAnimation('moving', TEX_ANIM_BALL);
+      this.sprite.addAnimation('moving', TEX.BALL);
       this.sprite.position = tilemap.AbsPosFromIJ(i, j);
       this.atk = atk;
       this.hasHitSomething = false;

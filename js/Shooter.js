@@ -4,11 +4,14 @@ class Shooter extends Plant {
     super(i, j, price, 200);
     this.balls = [];
 
-    this.shootTrigger = new PoissonDrivenTrigger(
-      0.2 * FRAMERATE,
-      1.5 * FRAMERATE,
-      2.5 * FRAMERATE,
-      1.5 * FRAMERATE,
+    this.shootTrigger = new Trigger(
+      () => (
+        Proba.poissonDriven(
+          0.2 * FRAMERATE,
+          1.5 * FRAMERATE,
+          2.5 * FRAMERATE,
+          1.5 * FRAMERATE)
+      ),
       () => {
         // Shoot
         if(this.isDead())

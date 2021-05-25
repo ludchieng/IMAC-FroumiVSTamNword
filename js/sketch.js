@@ -4,16 +4,19 @@ let player;
 let zombiesArmy;
 let gController;
 
-let TEX_GARDEN;
-let TEX_ANIM_BALL;
-let TEX_ANIM_FROUMI_VENER;
+let TEX;
 
 const FRAMERATE = 60;
 
 function preload(){
-  TEX_GARDEN = loadImage('assets/garden.png');
-  TEX_ANIM_BALL = loadAnimation('assets/cherry0000.png', 'assets/cherry0011.png');
-  TEX_ANIM_FROUMI_VENER = loadAnimation('assets/froumivener0000.png', 'assets/froumivener0004.png');
+  TEX = {
+    GARDEN: loadImage('assets/garden.png'),
+    SUNFLOWER: loadImage('assets/sunflower.png'),
+    TAMNWORD: loadImage('assets/tamnword.png'),
+    BALL: loadAnimation('assets/cherry0000.png', 'assets/cherry0011.png'),
+    FROUMI: loadImage('assets/froumi.png'),
+    FROUMI_VENER: loadAnimation('assets/froumivener0000.png', 'assets/froumivener0004.png'),
+  }
 }
 
 function setup() {
@@ -28,7 +31,7 @@ function setup() {
 
 function draw() {
   background(51);
-  image(TEX_GARDEN, tilemap.X-tilemap.TILE_SIZE/2, tilemap.Y-tilemap.TILE_SIZE/2);
+  image(TEX.GARDEN, tilemap.X-tilemap.TILE_SIZE/2, tilemap.Y-tilemap.TILE_SIZE/2);
 
   gController.update();
   gController.render();

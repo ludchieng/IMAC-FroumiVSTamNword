@@ -5,7 +5,6 @@ class Tile {
     this.j = j;
     this.plant = null;
     this.sprite = createSprite(0, 0, 70, 70);
-    this.sprite.addImage(loadImage('assets/grass.png'));
     // this.sprite.shapeColor = color(70, 200, 50, 20);
     this.sprite.mouseActive = true;
     this.sprite.setCollider('rectangle', 0, 0, 68, 68);

@@ -75,7 +75,7 @@ class ZombiesArmy {
   }
 
   render() {
-    for (let z of this.zombies)
+    for (const z of this.zombies)
       z.render();
   }
 
@@ -97,6 +97,6 @@ class ZombiesArmy {
     }
     this.zombies.push(new Zombie(tilemap.SIZE_X + 1, line ));
     // this.incrementZombieCounter();
-  }z
+  }
 
 }
