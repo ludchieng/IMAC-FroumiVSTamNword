@@ -22,8 +22,8 @@ function setup() {
   frameRate(FRAMERATE);
   createCanvas(900, 630);
   gController = new GameController();
-  selector = new Selector();
   tilemap = new TileMap();
+  selector = new Selector();
   player = new Player();
   zombiesArmy = new ZombiesArmy();
 }

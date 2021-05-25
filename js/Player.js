@@ -22,9 +22,11 @@ class Player {
   }
 
   render() {
-    fill('#fff')
-    textSize(24)
-    textAlign(RIGHT)
+    rectMode(CORNER);
+    fill('#fff');
+    textSize(24);
+    textAlign(RIGHT);
+    noStroke();
     text(this.balance+'', 15, 38, 80)
   }
 

@@ -5,6 +5,7 @@ class Selector {
     this.Y = 50;
     this.KEYS = ['a','z','e','r','q','s','d','f','g'];
     this.PLANTS = [Sunflower, ShooterNormal, ShooterRebou];
+    this.PLANTS_PRICES = this.PLANTS.map((clas) => (new clas()).PRICE);
     this.TEX_PLANTS = {
       colored: [
         'assets/sunflower.png',
@@ -30,12 +31,14 @@ class Selector {
 
   loadSprites() {
     for (let i=0; i<this.PLANTS.length; i++) {
-      let s = createSprite(this.X + 90 * i, this.Y, 58, 80);
+      let s = createSprite(this.X + 70 * i, this.Y + 5, 58, 80);
       s.addImage(loadImage(this.TEX_PLANTS.bw[i]));
+      s.scale *= .7;
       this.sprites.bw.push(s);
 
-      s = createSprite(this.X + 90 * i, this.Y, 58, 80);
+      s = createSprite(this.X + 70 * i, this.Y + 5, 58, 80);
       s.addImage(loadImage(this.TEX_PLANTS.colored[i]));
+      s.scale *= .7;
       this.sprites.colored.push(s);
     }
   }
@@ -55,6 +58,13 @@ class Selector {
         drawSprite(this.sprites.colored[i]);
       else
         drawSprite(this.sprites.bw[i]);
+      textAlign(CENTER);
+      textSize(18);
+      fill('#fff');
+      text(this.PLANTS_PRICES[i], this.X + 70 * i, this.Y - 27);
+      textSize(15);
+      fill('#fff9');
+      text(this.KEYS[i], this.X + 70 * i, this.Y + 45);
     }
   }
 
@@ -67,7 +77,7 @@ class Selector {
 
   getSelectedPrice() {
     // Instanciate a plant to get its price
-    return (new this.PLANTS[this.idxSelected]()).PRICE;
+    return this.PLANTS_PRICES[this.idxSelected];
   }
   
 }

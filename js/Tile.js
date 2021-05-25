@@ -5,7 +5,6 @@ class Tile {
     this.j = j;
     this.plant = null;
     this.sprite = createSprite(0, 0, 70, 70);
-    // this.sprite.shapeColor = color(70, 200, 50, 20);
     this.sprite.mouseActive = true;
     this.sprite.setCollider('rectangle', 0, 0, 68, 68);
     this.sprite.onMouseReleased = () => gController.handleTileClick(this.i, this.j);
@@ -19,17 +18,16 @@ class Tile {
     }
   }
 
-  render() {
-    // drawSprite(this.sprite);   
-    if (!this.hasPlant()) {
-      this.shapeColor = color(200, 200, 50, 50);
-      if (this.mouseIsOver)
-        this.shapeColor = color(70, 200, 50, 50);
-      else
-        this.shapeColor = color(20, 50, 200, 50);
-    } else {
-      this.shapeColor = color(0, 0, 0, 0);
+  render() {  
+    if (this.hasPlant())
       this.plant.render();
+
+    if (!this.hasPlant() && this.sprite.mouseIsOver) {
+      fill('#fff1');
+      stroke('#fff');
+      strokeWeight(2);
+      rectMode(CENTER);
+      rect(this.sprite.position.x, this.sprite.position.y, 70, 70);
     }
   }
 
