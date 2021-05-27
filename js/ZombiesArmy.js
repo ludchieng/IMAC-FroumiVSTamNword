@@ -100,7 +100,14 @@ class ZombiesArmy {
       // Ignore lineOrLinesArray
       line = Proba.pickUniformlyFrom(Array.from(Array(tilemap.SIZE_Y).keys()))
     }
-    this.zombies.push(new Zombie(tilemap.SIZE_X, line));
+    switch (Proba.pickUniformlyFrom([0,1])) {
+      case 0:
+        this.zombies.push(new Zombie(tilemap.SIZE_X, line));
+        break;
+      case 1:
+        this.zombies.push(new ZombieVener(tilemap.SIZE_X, line));
+        break;
+    }
   }
 
 }

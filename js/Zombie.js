@@ -1,16 +1,23 @@
 class Zombie {
 
-  constructor(i, j) {
-    this.SPEED = Proba.normalDriven(50, 2, 45, 55) / FRAMERATE;
+  constructor(
+    i, j,
+    texture = TEX.TAMNWORD,
+    health = 200,
+    atk = 35,
+    speed = Proba.normalDriven(50, 2, 45, 55) / FRAMERATE,
+    )
+  {
+    this.SPEED = speed;
     this.STATES = { STOPPED: 0, MOVING: 1, EATING: 2 };
     this.i = i;
     this.j = j;
     this.sprite = createSprite(100, 50, 60, 60);
-    this.sprite.addImage(TEX.TAMNWORD);
+    this.sprite.addImage(texture);
     this.sprite.position = tilemap.AbsPosFromIJ(i, j);
     this.sprite.position.x += Proba.uniform() * 100;
-    this.health = 200;
-    this.atk = 35;
+    this.health = health;
+    this.atk = atk;
     this.cx = -this.SPEED;
     this.state = this.STATES.MOVING;
   }

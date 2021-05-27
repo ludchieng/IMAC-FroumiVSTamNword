@@ -14,6 +14,7 @@ function preload(){
     GARDEN: loadImage('assets/garden.png'),
     SUNFLOWER: loadImage('assets/sunflower.png'),
     TAMNWORD: loadImage('assets/tamnword.png'),
+    TAMNWORD_VENER: loadImage('assets/tamnwordvener.png'),
     BALL: loadAnimation('assets/cherry0000.png', 'assets/cherry0011.png'),
     FROUMI: loadImage('assets/froumi.png'),
     FROUMI_VENER: loadAnimation('assets/froumivener0000.png', 'assets/froumivener0004.png'),

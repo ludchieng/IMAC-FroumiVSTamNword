@@ -3,81 +3,56 @@ class Selector {
   constructor() {
     this.X = 150;
     this.Y = 50;
-    this.KEYS = ['a','z','e','r','q','s','d','f','g'];
-    this.PLANTS = [Sunflower, ShooterNormal, ShooterRebou];
-    this.PLANTS_PRICES = this.PLANTS.map((clas) => (new clas()).PRICE);
-    this.TEX_PLANTS = {
-      colored: [
-        'assets/sunflower.png',
-        'assets/froumi.png',
-        'assets/froumivener0000.png',
-      ],
-      bw: [
-        'assets/sunflower_bw.png',
-        'assets/froumi_bw.png',
-        'assets/froumiVener_bw.png',
-      ] 
-    };
-
+    this.KEYS = { a:0, z:1, e:2, r:3, q:4, s:5, d:6, f:7, g:8 };
+    this.items = this.createItems();
     this.idxSelected = 0;
-    
-    this.sprites = {
-      colored: [],
-      bw: [],
-    };
-
-   this.loadSprites();
   }
 
-  loadSprites() {
-    for (let i=0; i<this.PLANTS.length; i++) {
-      let s = createSprite(this.X + 70 * i, this.Y + 5, 58, 80);
-      s.addImage(loadImage(this.TEX_PLANTS.bw[i]));
-      s.scale *= .7;
-      this.sprites.bw.push(s);
-
-      s = createSprite(this.X + 70 * i, this.Y + 5, 58, 80);
-      s.addImage(loadImage(this.TEX_PLANTS.colored[i]));
-      s.scale *= .7;
-      this.sprites.colored.push(s);
-    }
+  createItems() {
+    let i = 0;
+    const keys = Object.keys(this.KEYS);
+    return [
+      new SelectorItem(
+        'assets/sunflower.png', 'assets/sunflower_bw.png', i,
+        Sunflower, (new Sunflower()).PRICE, keys[i++], FRAMERATE*2),
+      new SelectorItem(
+        'assets/froumi.png', 'assets/froumi_bw.png', i,
+        ShooterNormal, (new ShooterNormal()).PRICE, keys[i++], FRAMERATE*3),
+      new SelectorItem(
+        'assets/froumivener0003.png', 'assets/froumiVener_bw.png', i,
+        ShooterRebou, (new ShooterRebou()).PRICE, keys[i++], FRAMERATE*4),
+    ]
   }
 
   update() {
     let count = 0;
-    for (let i=0; i<this.PLANTS.length; i++) {
-      if (keyWentDown(this.KEYS[i]) && count < this.PLANTS.length)
+    for (const k in this.KEYS) {
+      if (keyWentDown(k) && count < this.items.length)
         this.idxSelected = count;
       count++;
     }
+
+    for (let item of this.items)
+      item.update();
   }
 
   render() {
-    for (let i=0; i<this.PLANTS.length; i++) {
-      if(i == this.idxSelected)
-        drawSprite(this.sprites.colored[i]);
-      else
-        drawSprite(this.sprites.bw[i]);
-      textAlign(CENTER);
-      textSize(18);
-      fill('#fff');
-      text(this.PLANTS_PRICES[i], this.X + 70 * i, this.Y - 27);
-      textSize(15);
-      fill('#fff9');
-      text(this.KEYS[i], this.X + 70 * i, this.Y + 45);
-    }
+    push();
+    translate(this.X, this.Y);
+    for (let i = 0; i < this.items.length; i++)
+      this.items[i].render(this.idxSelected === i);
+    pop();
   }
 
   /**
    * @returns the class reference of the plant
    */
   getSelected() {
-    return this.PLANTS[this.idxSelected];
+    return this.items[this.idxSelected].get();
   }
 
   getSelectedPrice() {
-    // Instanciate a plant to get its price
-    return this.PLANTS_PRICES[this.idxSelected];
+    return this.items[this.idxSelected].getPrice();
   }
   
 }
