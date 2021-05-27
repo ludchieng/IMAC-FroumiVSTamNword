@@ -11,8 +11,10 @@ class GameController {
       return;
     if (lastMouseButton === LEFT && !tilemap.get(i, j).hasPlant()) {
       // Set plant
-      if (player.pay(selector.getSelectedPrice()))
-        tilemap.setPlantFromSelector(i, j);
+      if (player.canBuy(selector.getSelectedPrice())) {
+        if (tilemap.setPlantFromSelector(i, j))
+          player.pay(selector.getSelectedPrice())
+      }
     }
     if (lastMouseButton === RIGHT && tilemap.get(i, j).hasPlant()) {
       // Remove plant

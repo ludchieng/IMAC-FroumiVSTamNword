@@ -27,8 +27,9 @@ class TileMap {
   setPlantFromSelector(i, j) {
     const SelectedPlantClass = selector.getSelected();
     if (SelectedPlantClass === null)
-      return;
+      return false;
     this.get(i, j).plant = new SelectedPlantClass(i, j);
+    return true;
   }
 
   update() {

@@ -14,10 +14,10 @@ class Selector {
     return [
       new SelectorItem(
         'assets/sunflower.png', 'assets/sunflower_bw.png', i,
-        Sunflower, (new Sunflower()).PRICE, keys[i++], FRAMERATE*2),
+        Sunflower, (new Sunflower()).PRICE, keys[i++], FRAMERATE*1),
       new SelectorItem(
         'assets/froumi.png', 'assets/froumi_bw.png', i,
-        ShooterNormal, (new ShooterNormal()).PRICE, keys[i++], FRAMERATE*3),
+        ShooterNormal, (new ShooterNormal()).PRICE, keys[i++], FRAMERATE*1.5),
       new SelectorItem(
         'assets/froumivener0003.png', 'assets/froumiVener_bw.png', i,
         ShooterRebou, (new ShooterRebou()).PRICE, keys[i++], FRAMERATE*4),

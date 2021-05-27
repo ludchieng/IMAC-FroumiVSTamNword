@@ -4,8 +4,8 @@ class Player {
     this.balance = 500;
   }
 
-  canBuy(plant) {
-    return this.balance >= plant.PRICE;
+  canBuy(price) {
+    return this.balance >= price;
   }
 
   pay(price) {
