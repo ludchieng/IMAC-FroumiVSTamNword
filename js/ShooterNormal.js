@@ -22,4 +22,8 @@ class ShooterNormal extends Shooter {
     );
   }
 
+  getWeight() {
+      return 20;
+  }
+
 }

@@ -92,15 +92,16 @@ class ZombiesArmy {
     let line;
     if (!isNaN(lineOrLinesArray)) {
       // Get line
-      line = lineOrLinesArray
+      line = lineOrLinesArray;
     } else if (Array.isArray(lineOrLinesArray)) {
       // Get linesArray
-      line = Proba.pickUniformlyFrom(lineOrLinesArray)
+      line = Proba.pickUniformlyFrom(lineOrLinesArray);
     } else {
       // Ignore lineOrLinesArray
-      line = Proba.pickUniformlyFrom(Array.from(Array(tilemap.SIZE_Y).keys()))
+      console.log(tilemap.getLinesWeights().map((e) => 1/e))
+      line = Proba.generateIndexWeightly(tilemap.getLinesWeights().map((e) => 1/e));
     }
-    switch (Proba.pickUniformlyFrom([0,1])) {
+    switch (Proba.generateIndexWeightly([0.8, 0.2])) {
       case 0:
         this.zombies.push(new Zombie(tilemap.SIZE_X, line));
         break;

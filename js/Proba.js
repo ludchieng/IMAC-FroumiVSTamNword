@@ -4,11 +4,24 @@ const Proba = {
   },
 
   pickUniformlyFrom: (array) => {
-    const count = array.length;
-    const probability = 1 / count;
-    const rand = Math.random();
-    const index = Math.floor(rand / probability);
+    const probability = 1 / array.length;
+    const index = Math.floor(Proba.uniform() / probability);
     return array[index];
+  },
+
+  /**
+   * @returns a number between 0 and 'array.length-1' where
+   * the 'array' elements give the probability of occurrence
+   * of their related index in this array
+   */
+  generateIndexWeightly: (array) => {
+    const sum = array.reduce( (acc, curr) => acc + curr, 0);
+    const r = Proba.uniform() * sum;
+    let acc = array[0];
+    let i = 0;
+    while (acc < r)
+      acc += array[++i];
+    return i;
   },
 
   poisson: (lambda) => {

@@ -23,6 +23,10 @@ class Sunflower extends Plant {
     );
   }
 
+  getWeight() {
+      return 10;
+  }
+
   update() {
     super.update();
     this.gainTrigger.update();

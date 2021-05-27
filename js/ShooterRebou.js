@@ -22,4 +22,8 @@ class ShooterRebou extends Shooter {
     );
   }
 
+  getWeight() {
+      return 30;
+  }
+
 }

@@ -19,6 +19,18 @@ const testPickUniformlyFrom = (n, array) => {
   console.log("ProbaTest pickUniformlyFrom(array) (array, res):", array, res);
 }
 
+const testGenerateIndexWeightly = (n, array) => {
+  let res = {};
+  for (let i = 0; i < n; i++) {
+    const x = Proba.generateIndexWeightly(array);
+    (res[x]) ? res[x]++ : res[x] = 1;
+  }
+  for (const state in res)
+    res[state] = res[state] / n;
+
+  console.log("ProbaTest generateIndexWeightly(array) (array, res):", array, res);
+}
+
 const testPoisson = (n) => {
   let res = {};
   for (let i = 0; i < n; i++) {
@@ -75,6 +87,7 @@ const testNormalDriven = (n, mean, deviation, min, max) => {
 
 testUniform(10000)
 testPickUniformlyFrom(10000, [0,1,2,3])
+testGenerateIndexWeightly(10000, [10, 30, 20, 25, 15])
 testPoisson(10000)
 testPoissonDriven(100000, 80, 100, 200, 100)
 testNormal(1000000, 0, 1)

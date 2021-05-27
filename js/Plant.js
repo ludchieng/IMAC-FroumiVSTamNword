@@ -22,6 +22,10 @@ class Plant {
         return this.health <= 0;
     }
 
+    getWeight() {
+        return 10;
+    }
+
     update() { 
         if (this.isDead())
             this.sprite.remove();

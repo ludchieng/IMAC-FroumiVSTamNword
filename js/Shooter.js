@@ -22,8 +22,8 @@ class Shooter extends Plant {
     );
   }
 
-  shoot() {
-    
+  getWeight() {
+      return 20;
   }
 
   update() {

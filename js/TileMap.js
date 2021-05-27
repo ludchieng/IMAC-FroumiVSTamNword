@@ -24,6 +24,15 @@ class TileMap {
     return this.tiles[i][j];
   }
 
+  getLinesWeights() {
+    const lines = this.tiles[0].map((_, colIndex) => this.tiles.map(row => row[colIndex]));
+    return lines.map((line) => (
+      line.reduce((acc, curr) => (
+        acc + ((curr.plant != null) ? curr.plant.getWeight() : 0)
+      ), 10)
+    ));
+  }
+
   setPlantFromSelector(i, j) {
     const SelectedPlantClass = selector.getSelected();
     if (SelectedPlantClass === null)
