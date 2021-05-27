@@ -7,6 +7,8 @@ let gController;
 let TEX;
 const FRAMERATE = 60;
 
+let lastMouseButton;
+
 function preload(){
   TEX = {
     GARDEN: loadImage('assets/garden.png'),
@@ -31,4 +33,8 @@ function setup() {
 function draw() {
   gController.update();
   gController.render();
+}
+
+function mouseReleased() {
+  lastMouseButton = mouseButton;
 }

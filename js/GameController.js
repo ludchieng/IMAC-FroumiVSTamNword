@@ -9,11 +9,15 @@ class GameController {
   handleTileClick(i, j) {
     if (this.state !== this.STATES.INGAME)
       return;
-
-    if (!tilemap.get(i, j).hasPlant()) {
-      if (player.pay(selector.getSelectedPrice())) {
+    if (lastMouseButton === LEFT && !tilemap.get(i, j).hasPlant()) {
+      // Set plant
+      if (player.pay(selector.getSelectedPrice()))
         tilemap.setPlantFromSelector(i, j);
-      }
+    }
+    if (lastMouseButton === RIGHT && tilemap.get(i, j).hasPlant()) {
+      // Remove plant
+      player.balance += tilemap.get(i, j).plant.PRICE / 2;
+      tilemap.get(i, j).removePlant();
     }
   }
 
