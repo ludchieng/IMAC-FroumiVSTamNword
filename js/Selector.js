@@ -4,6 +4,7 @@ class Selector {
     this.X = 150;
     this.Y = 50;
     this.KEYS = { a:0, z:1, e:2, r:3, q:4, s:5, d:6, f:7, g:8 };
+    this.KEYS['SHIFT'] = -1;
     this.items = this.createItems();
     this.idxSelected = 0;
   }
@@ -25,11 +26,10 @@ class Selector {
   }
 
   update() {
-    let count = 0;
     for (const k in this.KEYS) {
-      if (keyWentDown(k) && count < this.items.length)
-        this.idxSelected = count;
-      count++;
+      //console.log(k);
+      if (keyWentDown(k))
+        this.idxSelected = this.KEYS[k];
     }
 
     for (let item of this.items)
@@ -48,11 +48,15 @@ class Selector {
    * @returns the class reference of the plant
    */
   getSelected() {
-    return this.items[this.idxSelected].get();
+    if (this.items[this.idxSelected] !== undefined)
+      return this.items[this.idxSelected].get();
+    return null;
   }
 
   getSelectedPrice() {
-    return this.items[this.idxSelected].getPrice();
+    if (this.items[this.idxSelected] !== undefined)
+      return this.items[this.idxSelected].getPrice();
+    return null;
   }
   
 }

@@ -98,8 +98,7 @@ class ZombiesArmy {
       line = Proba.pickUniformlyFrom(lineOrLinesArray);
     } else {
       // Ignore lineOrLinesArray
-      console.log(tilemap.getLinesWeights().map((e) => 1/e))
-      line = Proba.generateIndexWeightly(tilemap.getLinesWeights().map((e) => 1/e));
+      line = Proba.generateIndexWeightly(tilemap.getLinesWeights().map((e) => 100/e));
     }
     switch (Proba.generateIndexWeightly([0.8, 0.2])) {
       case 0:

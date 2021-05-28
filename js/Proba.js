@@ -65,6 +65,26 @@ const Proba = {
 
   normalDriven: (mean, deviation, min, max) => {
     return Math.min(max, Math.max(min, Proba.normal(mean, deviation)));
-  }
+  },
+
+  bernoulli: (p) => {
+    return Proba.uniform() < p ? 1 : 0;
+  },
+
+  exponential: (lambda) => {
+    /**
+     * Knuth algorithm
+     * Knuth, Donald Ervin (1997), Seminumerical Algorithms,
+     * The Art of Computer Programming, 2 (3rd ed.),
+     * Addison Wesley, ISBN 978-0-201-89684-8
+     */
+    return -Math.log(Proba.uniform()) / lambda;
+  },
+
+  exponentialDriven: (lambda, min, max, delay) => {
+    return Math.min(max, Math.max(min,
+      delay - Math.log(Proba.uniform()) / lambda
+    ));
+  },
 
 }

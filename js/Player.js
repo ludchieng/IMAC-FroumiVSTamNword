@@ -5,11 +5,11 @@ class Player {
   }
 
   canBuy(price) {
-    return this.balance >= price;
+    return !isNaN(price) && this.balance >= price;
   }
 
   pay(price) {
-    if (this.balance >= price) {
+    if (!isNaN(price) && this.balance >= price) {
       player.balance -= price;
       return true;
     }

@@ -83,6 +83,42 @@ const testNormalDriven = (n, mean, deviation, min, max) => {
   console.log("ProbaTest normalDriven() (res):", res);
 }
 
+const testBernoulli = (n, p) => {
+  let res = {};
+  for (let i = 0; i < n; i++) {
+    const x = Proba.bernoulli(p);
+    (res[x]) ? res[x]++ : res[x] = 1;
+  }
+  for (const state in res)
+    res[state] = res[state] / n;
+
+  console.log("ProbaTest bernoulli(p) (p, res):", p, res);
+}
+
+const testExponential = (n, lambda) => {
+  let res = {};
+  for (let i = 0; i < n; i++) {
+    const x = Math.floor(Proba.exponential(lambda) * 10);
+    (res[x]) ? res[x]++ : res[x] = 1;
+  }
+  for (const state in res)
+    res[state] = res[state] / n;
+
+  console.log("ProbaTest exponential(lambda) (lambda, res):", lambda, res);
+}
+
+const testExponentialDriven = (n, lambda, min, max, delay) => {
+  let res = {};
+  for (let i = 0; i < n; i++) {
+    const x = Math.floor(Proba.exponentialDriven(lambda, min, max, delay) * 10);
+    (res[x]) ? res[x]++ : res[x] = 1;
+  }
+  for (const state in res)
+    res[state] = res[state] / n;
+
+  console.log("ProbaTest exponentialDriven(lambda) (lambda, res):", lambda, res);
+}
+
 
 
 testUniform(10000)
@@ -92,3 +128,6 @@ testPoisson(10000)
 testPoissonDriven(100000, 80, 100, 200, 100)
 testNormal(1000000, 0, 1)
 testNormalDriven(1000000, 0, 1, -3, 3)
+testBernoulli(10000, .35)
+testExponential(10000, 1)
+testExponentialDriven(100000, 1, 10, 13, 10)
