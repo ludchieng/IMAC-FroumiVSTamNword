@@ -1,7 +1,7 @@
 class Player {
 
   constructor() {
-    this.balance = 500;
+    this.balance = 1000;
   }
 
   canBuy(price) {

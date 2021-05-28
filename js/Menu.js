@@ -8,7 +8,7 @@ class Menu {
     this.startBtn.elt.onclick = () => {
       setTimeout(() => {
         gController.changeStateTo(gController.STATES.INGAME);
-      }, 20);
+      }, 60);
     };
   }
 

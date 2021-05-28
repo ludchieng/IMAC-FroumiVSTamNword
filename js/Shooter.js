@@ -17,7 +17,7 @@ class Shooter extends Plant {
         if(this.isDead())
           return;
         let b = new Ball(this.i, this.j, 50, 0);
-        this.balls.push(b);
+        orphansManager.addOrphan(b);
       }
     );
   }
@@ -28,18 +28,11 @@ class Shooter extends Plant {
 
   update() {
     super.update();
-    for(let b of this.balls) {
-      if(b.isDead())
-        this.balls.remove(b);
-      b.update();
-    }
     this.shootTrigger.update();
   }
 
   render() {
     super.render();
-    for(let b of this.balls)
-      b.render();
   }
 
 }

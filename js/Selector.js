@@ -15,7 +15,7 @@ class Selector {
     return [
       new SelectorItem(
         'assets/sunflower.png', 'assets/sunflower_bw.png', i,
-        Sunflower, (new Sunflower()).PRICE, keys[i++], FRAMERATE*1),
+        Sunflower, (new Sunflower()).PRICE, keys[i++], FRAMERATE*2),
       new SelectorItem(
         'assets/froumi.png', 'assets/froumi_bw.png', i,
         ShooterNormal, (new ShooterNormal()).PRICE, keys[i++], FRAMERATE*1.5),

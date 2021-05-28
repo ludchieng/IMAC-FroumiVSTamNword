@@ -47,6 +47,7 @@ class GameController {
         tilemap.update();
         player.update();
         zombiesArmy.update();
+        orphansManager.update();
         break;
       case this.STATES.GAMEOVER:
         
@@ -66,6 +67,7 @@ class GameController {
         tilemap.render();
         player.render();
         zombiesArmy.render();
+        orphansManager.render();
         break;
       case this.STATES.GAMEOVER:
         

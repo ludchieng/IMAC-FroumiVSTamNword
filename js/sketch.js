@@ -3,9 +3,11 @@ let tilemap;
 let player;
 let zombiesArmy;
 let gController;
+let orphansManager;
+let DEBUG = true;
 
 let TEX;
-const FRAMERATE = 60;
+const FRAMERATE = 40;
 
 let lastMouseButton;
 
@@ -30,13 +32,27 @@ function setup() {
   selector = new Selector();
   player = new Player();
   zombiesArmy = new ZombiesArmy();
+  orphansManager = new OrphansManager();
 }
 
 function draw() {
   gController.update();
   gController.render();
+  if (DEBUG) showDebug();
 }
 
 function mouseReleased() {
   lastMouseButton = mouseButton;
+}
+
+function showDebug() {
+  push();
+  translate(width-20, 20);
+  textSize(13);
+  textAlign(RIGHT)
+  fill('#0f0');
+  text(frameRate().toFixed(0) + " fps", 0, 0);
+  text(orphansManager.orphans.length + " orphans", 0, 15);
+  text(zombiesArmy.zombies.length + " zombies", 0, 30);
+  pop();
 }

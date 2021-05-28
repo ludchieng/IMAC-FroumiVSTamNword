@@ -100,14 +100,10 @@ class ZombiesArmy {
       // Ignore lineOrLinesArray
       line = Proba.generateIndexWeightly(tilemap.getLinesWeights().map((e) => 100/e));
     }
-    switch (Proba.generateIndexWeightly([0.8, 0.2])) {
-      case 0:
-        this.zombies.push(new Zombie(tilemap.SIZE_X, line));
-        break;
-      case 1:
-        this.zombies.push(new ZombieVener(tilemap.SIZE_X, line));
-        break;
-    }
+    if (Proba.bernoulli(0.2))
+      this.zombies.push(new ZombieVener(tilemap.SIZE_X, line));
+    else
+      this.zombies.push(new Zombie(tilemap.SIZE_X, line));
   }
 
 }

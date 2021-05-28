@@ -17,7 +17,7 @@ class ShooterNormal extends Shooter {
         if(this.isDead())
           return;
         let b = new Ball(this.i, this.j, 50, Proba.normalDriven(0, .5, -1.5, 1.5));
-        this.balls.push(b);
+        orphansManager.addOrphan(b);
       }
     );
   }
