@@ -1,13 +1,17 @@
 /* this pins the drawing canvas to the top/right hand corner of our page */
 canvas {
   position: absolute;
-  top: 0px;
-  left: 0px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.5);
   cursor: pointer; 
 }
 
 body {
   background-color: #222;
+  margin: 0;
+  padding: 0;
 }
 
 * {
@@ -16,14 +20,187 @@ body {
 }
 
 #start {
+  cursor: pointer;
   padding: 20px 70px;
   font-size: 34px;
   border: none;
   color: #283a21;
   background-color: #65e034;
   box-shadow: 0 1px 10px #1d2918;
+  position: absolute;
+  top: 70%;
+  left: 50%;
+  transform: translate(-50%,-50%);
 }
 
 #start:hover {
   background-color: #85fc56;
+}
+
+#modal-container {
+  display: none;
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+  margin: 0;
+  padding: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 2;
+  opacity: 0;
+}
+
+.modal {
+  position: absolute;
+  top: 27%;
+  left: 40%;
+  /* transform: translate(-50%, -50%); */
+  width: 20%;
+  height: 45%;
+  border-radius: 10px;
+  transform-style: preserve-3d;
+  transition: all 0.8s ease;
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.5);
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.modal:hover {
+  transform: rotateY(180deg);
+}
+
+.modal-front {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  backface-visibility: hidden;
+  overflow: hidden;
+  background: #ffc728;
+  color: #000;
+  text-align: center;
+}
+
+.modal-front h1 {
+  position: relative;
+  top: 22%;
+  /* color: #fafafa;
+  box-shadow: ; */
+  
+  
+}
+
+.title {
+  font-size: 3rem;
+  
+}
+
+.inner-shadow {
+  background-color: #565656;
+  color: transparent;
+  text-shadow: 0px 2px 3px rgba(255,255,255,0.8);
+  -webkit-background-clip: text;
+     -moz-background-clip: text;
+          background-clip: text;
+}
+
+.modal-back {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  backface-visibility: hidden;
+  overflow: hidden;
+  background: #fafafa;
+  color: #333;
+  text-align: center;
+  transform: rotateY(180deg);
+}
+
+.modal-desc {
+  width: 75%;
+  text-align: left;
+  position: relative;
+  left: 12.5%;
+}
+
+.box-1 { 
+  height: 33.33%;
+	width: 100%; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #ffc728; 
+}
+
+.box-2 { 
+  height: 33.33%;
+  width: 13%;
+  text-align: center;
+  background-color: #ffc728; 
+  opacity: 0;
+}
+
+.btn {
+	line-height: 50px;
+	height: 50px;
+	text-align: center;
+	width: 250px;
+	cursor: pointer;
+}
+
+/* 
+========================
+      BUTTON ONE
+========================
+*/
+.btn-one {
+	color: #FFF;
+	transition: all 0.3s;
+	position: relative;
+}
+.btn-one span {
+	transition: all 0.3s;
+}
+.btn-one::before {
+	content: '';
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 1;
+	opacity: 0;
+	transition: all 0.3s;
+	border-top-width: 1px;
+	border-bottom-width: 1px;
+	border-top-style: solid;
+	border-bottom-style: solid;
+	border-top-color: rgba(255,255,255,0.5);
+	border-bottom-color: rgba(255,255,255,0.5);
+	transform: scale(0.1, 1);
+}
+.btn-one:hover span {
+	letter-spacing: 2px;
+}
+.btn-one:hover::before {
+	opacity: 1;	
+	transform: scale(1, 1);	
+}
+.btn-one::after {
+	content: '';
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 1;
+	transition: all 0.3s;
+	background-color: rgba(255,255,255,0.1);
+}
+.btn-one:hover::after {
+	opacity: 0;	
+	transform: scale(0.1, 1);
 }

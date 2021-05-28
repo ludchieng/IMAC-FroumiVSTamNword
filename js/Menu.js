@@ -4,7 +4,7 @@ class Menu {
     this.display = true;
     this.startBtn = createButton('Start');
     this.startBtn.elt.id = "start";
-    this.startBtn.position(width/2 - this.startBtn.elt.clientWidth/2, height/2);
+    // this.startBtn.position(width/2 - this.startBtn.elt.clientWidth/2, height/2);
     this.startBtn.elt.onclick = () => {
       setTimeout(() => {
         gController.changeStateTo(gController.STATES.INGAME);
@@ -37,5 +37,4 @@ class Menu {
     fill('#fff')
     text("Froumis vs. TamNWords", width/2, 260);
   }
-
 }
