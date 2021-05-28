@@ -18,6 +18,7 @@ function preload(){
     BALL: loadAnimation('assets/cherry0000.png', 'assets/cherry0011.png'),
     FROUMI: loadImage('assets/froumi.png'),
     FROUMI_VENER: loadAnimation('assets/froumivener0000.png', 'assets/froumivener0004.png'),
+    TANK: loadImage('assets/rock.png'),
   }
 }
 
