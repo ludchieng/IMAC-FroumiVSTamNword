@@ -4,7 +4,7 @@ class GameController {
     this.STATES = { MENU:0, INGAME:1, GAMEOVER:2, PAUSE:3 };
     this.state = this.STATES.MENU;
     this.menu = new Menu();
-    
+
     this.modal = new Modal();
     this.COOLDOWN_MODAL = FRAMERATE*30;
     this.cooldown = 0;
@@ -62,7 +62,7 @@ class GameController {
 
         if(this.cooldown === this.COOLDOWN_MODAL && !this.modal.isActivated) {
           let card = Proba.pickUniformlyFrom(CARDS);
-          this.modal.modalSetUp(card.type, card.content, card.event);
+          this.modal.modalSetUp(card.type, card.content, card.effect);
           this.modal.isActivated = true;
           this.cooldown = 0;
         } else if(!this.modal.isActivated) {

@@ -2,8 +2,12 @@ class ZombiesArmy {
   
   constructor() {
     this.TIME_INTER_WAVES = 5 * FRAMERATE;
-    this.TIME_INTER_ZOMBIES = 1 * FRAMERATE;
-    this.STATES = { STANDBY: -1, INTERZOMBIE:0, INTERWAVE:1, INTERROUND:2 }
+    this.TIME_INTER_ZOMBIES_NOMINAL = 2 * FRAMERATE;
+    this.timeInterZombies = this.TIME_INTER_ZOMBIES_NOMINAL;
+    this.STATES = { STANDBY: -1, INTERZOMBIE:0, INTERWAVE:1, INTERROUND:2 };
+
+    this.ZOMBIES_GROUP_SIZE_EXPECTED_NOMINAL = 1;
+    this.zombiesGroupSizeExpected = this.ZOMBIES_GROUP_SIZE_EXPECTED_NOMINAL;
 
     this.state = this.STATES.STANDBY;
     this.zombies = [];
@@ -25,7 +29,7 @@ class ZombiesArmy {
   }
 
   createCooldownZombie() {
-    return Proba.poissonDriven(2 * FRAMERATE, 0.1 * FRAMERATE, 5 * FRAMERATE, 0.1 * FRAMERATE);
+    return Proba.normalDriven(this.timeInterZombies, 0.5 * FRAMERATE, 0.1 * FRAMERATE, 3 * FRAMERATE);
   }
 
   createCooldownWave() {
@@ -77,7 +81,7 @@ class ZombiesArmy {
   }
 
   summonZombieGroup(lineOrLinesArray) {
-    const count = Proba.poissonDriven(1, 1, 6, 0);
+    const count = Proba.poissonDriven(this.zombiesGroupSizeExpected, 1, 6, 0);
     if (count > 1) console.log("Summoned", count, "zombies!")
     for (let i=0; i < count; i++)
       this.summonZombie(lineOrLinesArray);

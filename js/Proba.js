@@ -3,6 +3,10 @@ const Proba = {
     return Math.random();
   },
 
+  uniformInt: (n) => {
+    return Math.floor((Proba.uniform()*n));
+  },
+
   pickUniformlyFrom: (array) => {
     const probability = 1 / array.length;
     const index = Math.floor(Proba.uniform() / probability);

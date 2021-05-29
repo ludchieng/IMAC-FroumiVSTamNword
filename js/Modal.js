@@ -9,7 +9,7 @@ class Modal {
         this.isActivated = false;
         this.back_modal = document.getElementById("back");
         this.front = document.getElementById("front");
-        this.event = -1;
+        this.effect = () => {alert("bite")};
 
         this.front.addEventListener('click', () => {
            document.getElementById("modal").classList.add('modal-flip');
@@ -21,9 +21,10 @@ class Modal {
         });        
     }
 
-    modalSetUp(modal_header, modal_content, e) {
+    modalSetUp(modal_header, modal_content, effect) {
         gController.changeStateTo(gController.STATES.PAUSE);
-        this.event = e;
+        this.effect = effect;
+        this.effect();
         let t = document.querySelector(".modal-back > .title");
         let c = document.querySelector(".modal-back > .modal-desc");
 
@@ -37,13 +38,7 @@ class Modal {
         modal.style.display = "inherit";
         intervalID=setInterval(this.modalShow,20);
     }
-    
-    fadeOut() {
-        let modal = document.getElementById("modal-container");
-        intervalID=setInterval(this.modalClear,20);
-       
-    }
-    
+     
     modalShow() {
         let modal = document.getElementById("modal-container");
         opacity = Number(window.getComputedStyle(modal).getPropertyValue("opacity"));
@@ -71,20 +66,6 @@ class Modal {
             gController.modal.isActivated = false;
             document.getElementById("modal").classList.remove('modal-flip');
             gController.changeStateTo(gController.STATES.INGAME);
-            switch(this.event) {
-                case 1:
-                    alert(1);
-                    break;
-                case 2:
-                    alert(2);
-                    break;
-                case 3:
-                    alert(3);
-                    break;
-                case 4:
-                    alert(4);
-                    break;
-            }
         }
     }
 }

@@ -3,14 +3,17 @@ class ShooterNormal extends Shooter {
   constructor(i, j) {
     super(i, j, 100);
     this.sprite.addImage(TEX.FROUMI);
+
+    this.TIME_INTER_SHOOT_NOMINAL = 1.6 * FRAMERATE;
+    this.timeInterShoot = this.TIME_INTER_SHOOT_NOMINAL;
     
     this.shootTrigger = new Trigger(
       () => (
-        Proba.poissonDriven(
-          0.2 * FRAMERATE,
-          1.5 * FRAMERATE,
-          2.5 * FRAMERATE,
-          1.5 * FRAMERATE)
+        Proba.normalDriven(
+          this.timeInterShoot,
+          0.5 * FRAMERATE,
+          0.1 * FRAMERATE,
+          2.5 * FRAMERATE)
       ),
       () => {
         // Shoot

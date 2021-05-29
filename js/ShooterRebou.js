@@ -4,13 +4,16 @@ class ShooterRebou extends Shooter {
     super(i, j, 250);
     this.sprite.addAnimation('vener', TEX.FROUMI_VENER);
 
+    this.TIME_INTER_SHOOT_NOMINAL = .5 * FRAMERATE;
+    this.timeInterShoot = this.TIME_INTER_SHOOT_NOMINAL;
+
     this.shootTrigger = new Trigger(
       () => (
-        Proba.poissonDriven(
-          .2 * FRAMERATE,
+        Proba.normalDriven(
+          this.timeInterShoot,
           .5 * FRAMERATE,
-          2.5 * FRAMERATE,
-          .5 * FRAMERATE)
+          .05 * FRAMERATE,
+          1.5 * FRAMERATE)
     ),
       () => {
         // Shoot
