@@ -6,7 +6,7 @@ class GameController {
     this.menu = new Menu();
 
     this.modal = new Modal();
-    this.COOLDOWN_MODAL = FRAMERATE*3;
+    this.COOLDOWN_MODAL = FRAMERATE*30;
     this.cooldown = 0;
   }
 

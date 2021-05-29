@@ -3,7 +3,6 @@ class Menu {
   constructor() {
     this.dom = document.getElementById('menu');
     this.display;
-    this.startBtn = document.getElementById('button-container');
     this.sliders = this.createSliders();
     this.show();
   }
@@ -27,13 +26,11 @@ class Menu {
   show() {
     this.display = true;
     this.dom.hidden = !this.display;
-    this.startBtn.hidden = !this.display;
   }
 
   hide() {
     this.display = false;
     this.dom.hidden = !this.display;
-    this.startBtn.hidden = !this.display;
   }
 
   update() {
