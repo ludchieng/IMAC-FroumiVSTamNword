@@ -4,14 +4,22 @@ let player;
 let zombiesArmy;
 let gController;
 let orphansManager;
-let DEBUG = true;
+
+let config = {
+  sunflowerGainSpeed: 1,
+  buffsDuration: 1,
+  zombieSpawnSpeed: 1,
+  enragedZombiesSuccessRate: .2,
+  cooldownDuration: 1,
+};
+let DEBUG = false;
 
 let TEX;
 const FRAMERATE = 60;
 
 let lastMouseButton;
 
-function preload(){
+function preload() {
   TEX = {
     GARDEN: loadImage('assets/garden.png'),
     SUNFLOWER: loadImage('assets/sunflower.png'),
@@ -29,11 +37,6 @@ function setup() {
   frameRate(FRAMERATE);
   createCanvas(900, 630);
   gController = new GameController();
-  tilemap = new TileMap();
-  selector = new Selector();
-  player = new Player();
-  zombiesArmy = new ZombiesArmy();
-  orphansManager = new OrphansManager();
 }
 
 function draw() {

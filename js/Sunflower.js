@@ -9,10 +9,10 @@ class Sunflower extends Plant {
     this.gainTrigger = new Trigger(
       () => (
         Proba.normalDriven(
-          27 * FRAMERATE,
-          5 * FRAMERATE,
-          19 * FRAMERATE,
-          35 * FRAMERATE)
+          27 * FRAMERATE / config.sunflowerGainSpeed,
+          5 * FRAMERATE / config.sunflowerGainSpeed,
+          19 * FRAMERATE / config.sunflowerGainSpeed,
+          35 * FRAMERATE / config.sunflowerGainSpeed)
       ),
       () => {
         // Give money to player

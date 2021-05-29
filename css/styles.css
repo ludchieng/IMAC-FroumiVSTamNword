@@ -12,12 +12,8 @@ body {
   background-color: #222;
   margin: 0;
   padding: 0;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   overflow: hidden;
-}
-
-* {
-  font-size: 26px;
-  font-family: url('https://fonts.googleapis.com/css2?family=Odibee+Sans&display=swap');
 }
 
 .time {
@@ -60,22 +56,22 @@ body {
 
 .modal {
   position: absolute;
-  top: 27%;
-  left: 40%;
-  /* transform: translate(-50%, -50%); */
-  min-width: 20%;
-  min-height: 45%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  min-width: 400px;
+  min-height: 500px;
   height: 50%;
   width: 30;
   border-radius: 10px;
   transform-style: preserve-3d;
   transition: all 0.8s ease;
   box-shadow: 0 10px 10px rgba(0, 0, 0, 0.5);
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  user-select: none;
 }
 
 .modal-flip {
-  transform: rotateY(180deg);
+  transform: translate(-50%, -50%) rotateY(180deg);
 }
 
 .modal-front {
@@ -98,7 +94,7 @@ body {
 }
 
 .title {
-  font-size: 3rem;
+  font-size: 82px;
 }
 
 .inner-shadow {
@@ -129,6 +125,7 @@ body {
   width: 75%;
   text-align: left;
   position: relative;
+  font-size: 28px;
   left: 12.5%;
 }
 
@@ -136,12 +133,14 @@ body {
   width: 75%;
   text-align: center;
   position: relative;
+  font-weight: bold;
+  font-size: 32px;
   left: 12.5%;
   top: 40%;
 }
 
 .box-1{ 
-  height: 33.33%;
+  height: 150px;
 	width: 100%; 
   display: flex;
   justify-content: center;
@@ -215,7 +214,9 @@ body {
 }
 
 
-#pause-container, #button-container {
+#menu,
+#pause-container,
+#button-container {
   width: 900px;
   height: 630px;
   position: absolute;
@@ -231,6 +232,25 @@ body {
   display: none;
 }
 
+#config {
+  color: #fff;
+  font-size: 16px;
+  padding-top: 360px;
+  display: flex;
+  justify-content: center;
+}
+
+#config .slider-label {
+  margin-left: 14px;
+}
+
+#config input {
+  margin: 0 12px;
+  z-index: 1;
+  width: 120px;
+  pointer-events: all;
+}
+
 #start {
   z-index: 1;
   width: 20%;
@@ -241,7 +261,6 @@ body {
   transform: translate(-50%,-250%);
   pointer-events: all;
   background-color: transparent;
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
 #pause {
@@ -276,14 +295,11 @@ body {
   left: 50%;
   text-align: center;
   transform: translateX(-50%);
-  font-size: 0.5rem;
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   color: #565656;
   font-style: italic;
 }
 
 .footer a {
   text-decoration: none;
-  font-size: 0.5rem;
   color: #000;
 }

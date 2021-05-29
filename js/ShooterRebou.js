@@ -11,7 +11,7 @@ class ShooterRebou extends Shooter {
       () => (
         Proba.normalDriven(
           this.timeInterShoot,
-          .5 * FRAMERATE,
+          .2 * FRAMERATE,
           .05 * FRAMERATE,
           1.5 * FRAMERATE)
     ),
@@ -27,6 +27,11 @@ class ShooterRebou extends Shooter {
 
   getWeight() {
       return 30;
+  }
+
+  update() {
+    super.update();
+    this.shootTrigger.update();
   }
 
 }

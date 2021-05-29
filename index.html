@@ -2,7 +2,7 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8" />
-    <title>p5.js sketch</title>
+    <title>Ludwig Chieng · Froumis vs. TamNWords</title>
     <link rel="stylesheet" href="css/styles.css" />
   </head>
   <body>
@@ -14,7 +14,32 @@
     <div class="bg-img"></div>
     <div class="yellow"></div>
 
-    <div id="button-container">
+    <div id="menu" hidden>
+      <div id="config">
+        <div>
+          <div class="slider-label">Productivité <br/> tournesols</div>
+          <input id="sunflowerGainSpeed" type="range" min="0.5" max="5" step="0.5" value="1">
+        </div>
+        <div>
+          <div class="slider-label">Durées <br/> des bonus</div>
+          <input id="buffsDuration" type="range" min="0.25" max="2" step="0.25" value="1">
+        </div>
+        <div>
+          <div class="slider-label">Vitesse <br/> apparition zombie</div>
+          <input id="zombieSpawnSpeed" type="range" min="0" max="4" step="1" value="1">
+        </div>
+        <div>
+          <div class="slider-label">Taux de <br/> zombies enragés</div>
+          <input id="enragedZombiesSuccessRate" type="range" min="0" max="1" step="0.2" value="0.2">
+        </div>
+        <div>
+          <div class="slider-label">Durée de <br/> récupération</div>
+          <input id="cooldownDuration" type="range" min="0" max="4" step="0.5" value="1">
+        </div>
+      </div>
+    </div>
+    
+    <div id="button-container" hidden>
       <div id="pause-container">
         <div id="pause" class="inner-shadow">
           <div class="btn-pause"></div>
@@ -48,7 +73,7 @@
     </div>
 
 
-    <div class="footer"><p>Game created by <a href="https://fr.wikipedia.org/wiki/Tunnel_h%C3%A9lico%C3%AFdal" target="_blank">Ludwig CHIENG</a> & <a href="https://www.theogautier.fr" target="_blankblac">Théo GAUTIER</a></p></div>
+    <div class="footer"><p>Game created by <a href="https://fr.wikipedia.org/wiki/Tunnel_h%C3%A9lico%C3%AFdal">Ludwig CHIENG</a> & <a href="https://www.theogautier.fr">Théo GAUTIER</a></p></div>
     
     
     
@@ -118,6 +143,7 @@
 
     start.addEventListener('click', () => {
       setTimeout(() => {
+        gController.reset();
         gController.changeStateTo(gController.STATES.INGAME);
       }, 60);
       start.style.display = "none";

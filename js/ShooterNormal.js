@@ -30,4 +30,9 @@ class ShooterNormal extends Shooter {
       return 20;
   }
 
+  update() {
+    super.update();
+    this.shootTrigger.update();
+  }
+
 }

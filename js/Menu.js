@@ -1,25 +1,39 @@
 class Menu {
 
   constructor() {
-    this.display = true;
-    // this.startBtn = createButton('Start');
-    // this.startBtn.elt.id = "start";
-    // this.startBtn.position(width/2 - this.startBtn.elt.clientWidth/2, height/2);
-    // this.startBtn.elt.onclick = () => {
-    //   setTimeout(() => {
-    //     gController.changeStateTo(gController.STATES.INGAME);
-    //   }, 60);
-    // };
+    this.dom = document.getElementById('menu');
+    this.display;
+    this.startBtn = document.getElementById('button-container');
+    this.sliders = this.createSliders();
+    this.show();
+  }
+
+  createSliders() {
+    let res = {
+      sunflowerGainSpeed: document.getElementById('sunflowerGainSpeed'),
+      buffsDuration: document.getElementById('buffsDuration'),
+      zombieSpawnSpeed: document.getElementById('zombieSpawnSpeed'),
+      enragedZombiesSuccessRate: document.getElementById('enragedZombiesSuccessRate'),
+      cooldownDuration: document.getElementById('cooldownDuration'),
+    };
+    res.sunflowerGainSpeed.onchange = (e) => { config.sunflowerGainSpeed = +e.target.value }
+    res.buffsDuration.onchange = (e) => { config.buffsDuration = +e.target.value }
+    res.zombieSpawnSpeed.onchange = (e) => { config.zombieSpawnSpeed = +e.target.value }
+    res.enragedZombiesSuccessRate.onchange = (e) => { config.enragedZombiesSuccessRate = +e.target.value }
+    res.cooldownDuration.onchange = (e) => { config.cooldownDuration = +e.target.value }
+    return res;
   }
 
   show() {
     this.display = true;
-    // this.startBtn.elt.style.display = 'block';
+    this.dom.hidden = !this.display;
+    this.startBtn.hidden = !this.display;
   }
 
   hide() {
     this.display = false;
-    // this.startBtn.elt.style.display = 'none';
+    this.dom.hidden = !this.display;
+    this.startBtn.hidden = !this.display;
   }
 
   update() {
@@ -33,7 +47,6 @@ class Menu {
     background(51);
     textAlign(CENTER);
     textSize(56);
-    text
     fill('#fff')
     text("Froumis vs. TamNWords", width/2, 260);
   }

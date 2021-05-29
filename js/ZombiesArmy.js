@@ -30,7 +30,9 @@ class ZombiesArmy {
   }
 
   createCooldownZombie() {
-    return Proba.normalDriven(this.timeInterZombies, 0.5 * FRAMERATE, 0.1 * FRAMERATE, 3 * FRAMERATE);
+    return Proba.normalDriven(
+      this.timeInterZombies / config.zombieSpawnSpeed,
+      0.5 * FRAMERATE, 0.1 * FRAMERATE, 3 * FRAMERATE);
   }
 
   createCooldownWave() {
@@ -108,7 +110,7 @@ class ZombiesArmy {
       // Ignore lineOrLinesArray
       line = Proba.generateIndexWeightly(tilemap.getLinesWeights().map((e) => 100/e));
     }
-    if (Proba.bernoulli(0.2))
+    if (Proba.bernoulli(config.enragedZombiesSuccessRate))
       this.zombies.push(new ZombieVener(tilemap.SIZE_X, line));
     else
       this.zombies.push(new Zombie(tilemap.SIZE_X, line));

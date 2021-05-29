@@ -6,7 +6,7 @@ class GameController {
     this.menu = new Menu();
 
     this.modal = new Modal();
-    this.COOLDOWN_MODAL = FRAMERATE*30;
+    this.COOLDOWN_MODAL = FRAMERATE*3;
     this.cooldown = 0;
   }
 
@@ -48,6 +48,14 @@ class GameController {
         break;
     }
     this.state = state;
+  }
+
+  reset() {
+    tilemap = new TileMap();
+    selector = new Selector();
+    player = new Player();
+    zombiesArmy = new ZombiesArmy();
+    orphansManager = new OrphansManager();
   }
 
   update() {

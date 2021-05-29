@@ -15,16 +15,20 @@ class Selector {
     return [
       new SelectorItem(
         'assets/sunflower.png', 'assets/sunflower_bw.png', i,
-        Sunflower, (new Sunflower()).PRICE, keys[i++], FRAMERATE*2),
+        Sunflower, (new Sunflower()).PRICE, keys[i++],
+        2 * FRAMERATE * config.cooldownDuration),
       new SelectorItem(
         'assets/froumi.png', 'assets/froumi_bw.png', i,
-        ShooterNormal, (new ShooterNormal()).PRICE, keys[i++], FRAMERATE*1.5),
+        ShooterNormal, (new ShooterNormal()).PRICE, keys[i++], 
+        1.5 * FRAMERATE * config.cooldownDuration),
       new SelectorItem(
         'assets/froumivener0003.png', 'assets/froumiVener_bw.png', i,
-        ShooterRebou, (new ShooterRebou()).PRICE, keys[i++], FRAMERATE*4),
+        ShooterRebou, (new ShooterRebou()).PRICE, keys[i++], 
+        4 * FRAMERATE * config.cooldownDuration),
       new SelectorItem(
         'assets/rock.png', 'assets/rock_bw.png', i,
-        Tank, (new Tank()).PRICE, keys[i++], FRAMERATE*5),  
+        Tank, (new Tank()).PRICE, keys[i++], 
+        5 * FRAMERATE * config.cooldownDuration),  
     ]
   }
 
