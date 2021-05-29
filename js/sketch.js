@@ -7,7 +7,7 @@ let orphansManager;
 let DEBUG = true;
 
 let TEX;
-const FRAMERATE = 40;
+const FRAMERATE = 60;
 
 let lastMouseButton;
 
@@ -54,5 +54,6 @@ function showDebug() {
   text(frameRate().toFixed(0) + " fps", 0, 0);
   text(orphansManager.orphans.length + " orphans", 0, 15);
   text(zombiesArmy.zombies.length + " zombies", 0, 30);
+  text(getSprites().length + " sprites", 0, 45);
   pop();
 }

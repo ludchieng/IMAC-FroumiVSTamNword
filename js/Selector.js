@@ -24,7 +24,7 @@ class Selector {
         ShooterRebou, (new ShooterRebou()).PRICE, keys[i++], FRAMERATE*4),
       new SelectorItem(
         'assets/rock.png', 'assets/rock_bw.png', i,
-        Tank, (new Tank()).PRICE, keys[i++], FRAMERATE*4),  
+        Tank, (new Tank()).PRICE, keys[i++], FRAMERATE*5),  
     ]
   }
 

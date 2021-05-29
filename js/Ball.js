@@ -27,10 +27,10 @@ class Ball {
     }
 
     update() {
-        if (this.isDead())
-            this.sprite.remove();
         this.move();
         this.collide();
+        if (this.isDead())
+            this.sprite.remove();
     }
 
     isDead() {

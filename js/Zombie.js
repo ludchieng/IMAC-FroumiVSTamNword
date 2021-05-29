@@ -62,10 +62,10 @@ class Zombie {
   }
 
   update() {
-    if (this.isDead())
-      this.sprite.remove();
     this.sprite.position.x += this.cx;
     this.collide();
+    if (this.isDead())
+      this.sprite.remove();
   }
 
   isDead() {
