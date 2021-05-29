@@ -9,21 +9,21 @@ class OrphansManager {
   }
   
   update() {
-    for (const os of this.orphans) {
-      if (os.update !== undefined)
-        os.update();
-      if (os.isDead !== undefined && os.isDead()) {
-        if (os.sprite !== undefined)
-          os.sprite.remove();
-        this.orphans.remove(os);
+    for (const o of this.orphans) {
+      if (o.update !== undefined)
+        o.update();
+      if (o.isDead !== undefined && o.isDead()) {
+        if (o.sprite !== undefined)
+          o.sprite.remove();
+        this.orphans.remove(o);
       }
     }
   }
 
   render() {
-    for (const os of this.orphans)
-      if (os.render !== undefined)
-        os.render();
+    for (const o of this.orphans)
+      if (o.render !== undefined)
+        o.render();
   }
 
 }

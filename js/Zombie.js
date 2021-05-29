@@ -16,7 +16,8 @@ class Zombie {
     this.sprite.addImage(texture);
     this.sprite.position = tilemap.AbsPosFromIJ(i, j);
     this.sprite.position.x += Proba.uniform() * 100;
-    this.health = health;
+    this.HEALTH_MAX = health;
+    this.health = this.HEALTH_MAX;
     this.atk = atk;
     this.cx = -this.SPEED;
     this.state = this.STATES.MOVING;
@@ -74,6 +75,18 @@ class Zombie {
 
   render() {
     drawSprite(this.sprite);
+    if (this.health / this.HEALTH_MAX < 1) {
+      push();
+      translate(this.sprite.position.x, this.sprite.position.y);
+      rectMode(CORNER);
+      stroke('#0009');
+      strokeWeight(1)
+      fill('#e00d');
+      rect(-25, -30, 50, 4);
+      fill('#0e0e');
+      rect(-25, -30, 50 * this.health / this.HEALTH_MAX, 4);
+      pop();
+    }
   }
 
 }

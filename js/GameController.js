@@ -18,7 +18,11 @@ class GameController {
     }
     if (lastMouseButton === RIGHT && tilemap.get(i, j).hasPlant()) {
       // Remove plant
-      player.balance += tilemap.get(i, j).plant.PRICE / 2;
+      let plant = tilemap.get(i, j).plant
+      player.balance += Math.min(
+        .5 * plant.PRICE,
+        (plant.health/plant.HEALTH_MAX * plant.PRICE / 10).toFixed(0) * 10
+      );
       tilemap.get(i, j).removePlant();
     }
   }
