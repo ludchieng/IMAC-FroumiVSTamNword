@@ -22,6 +22,7 @@ class Modal {
     }
 
     modalSetUp(modal_header, modal_content, e) {
+        gController.changeStateTo(gController.STATES.PAUSE);
         this.event = e;
         let t = document.querySelector(".modal-back > .title");
         let c = document.querySelector(".modal-back > .modal-desc");
@@ -69,7 +70,7 @@ class Modal {
             gController.cooldown++;
             gController.modal.isActivated = false;
             document.getElementById("modal").classList.remove('modal-flip');
-
+            gController.changeStateTo(gController.STATES.INGAME);
             switch(this.event) {
                 case 1:
                     alert(1);

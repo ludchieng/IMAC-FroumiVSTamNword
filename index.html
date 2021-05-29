@@ -11,8 +11,8 @@
 
     <!-- <p class="time">00 : 00</p> -->
 
-    <div class="box-2">
-      <div class="btn btn-one" onclick="fadeIn()">
+    <div id="pause" class="box-2">
+      <div class="btn btn-one">
         <span>MODAL</span>
       </div>
     </div>
@@ -83,6 +83,19 @@
     document.addEventListener("contextmenu", function (e) {
       e.preventDefault();
     });
+
+    document.getElementById('pause').addEventListener('click', () => 
+      {
+      switch (gController.state) {
+        case gController.STATES.INGAME:  
+          gController.changeStateTo(gController.STATES.PAUSE);
+          break;
+        case gController.STATES.PAUSE:
+          gController.changeStateTo(gController.STATES.INGAME);
+          break;
+      }
+    });
+    
     </script>
   </body>
 </html>

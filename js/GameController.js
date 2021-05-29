@@ -1,13 +1,12 @@
 class GameController {
 
   constructor() {
-    this.STATES = { MENU:0, INGAME:1, GAMEOVER:2 };
+    this.STATES = { MENU:0, INGAME:1, GAMEOVER:2, PAUSE:3 };
     this.state = this.STATES.MENU;
     this.menu = new Menu();
-
-    // this.time = 0;
+    
     this.modal = new Modal();
-    this.COOLDOWN_MODAL = FRAMERATE*2;
+    this.COOLDOWN_MODAL = FRAMERATE*30;
     this.cooldown = 0;
   }
 
@@ -42,6 +41,9 @@ class GameController {
         break;
       case this.STATES.GAMEOVER:
         break;
+      case this.STATES.PAUSE:
+        
+        break;
     }
     this.state = state;
   }
@@ -60,7 +62,6 @@ class GameController {
 
         if(this.cooldown === this.COOLDOWN_MODAL && !this.modal.isActivated) {
           let card = Proba.pickUniformlyFrom(CARDS);
-          console.log(card);
           this.modal.modalSetUp(card.type, card.content, card.event);
           this.modal.isActivated = true;
           this.cooldown = 0;
@@ -70,6 +71,8 @@ class GameController {
         break;
       case this.STATES.GAMEOVER:
         
+        break;
+      case this.STATES.PAUSE:
         break;
     }
   }
@@ -89,7 +92,18 @@ class GameController {
         orphansManager.render();
         break;
       case this.STATES.GAMEOVER:
-        
+        background(51);
+        textSize(75);
+        textAlign(CENTER);
+        fill(255,255,255);
+        text("THE END", width/2, height/4);
+
+        textSize(20);
+        text("Score : ", width/2, height/2);
+        text("Kills : ", width/2, height/1.8);
+        break;
+      case this.STATES.PAUSE:
+        //draw 2 rectangles de morts
         break;
     }
   }

@@ -67,6 +67,9 @@ class Zombie {
     this.collide();
     if (this.isDead())
       this.sprite.remove();
+    if(this.sprite.position.x < 0) {
+      gController.changeStateTo(gController.STATES.GAMEOVER);
+    }
   }
 
   isDead() {
