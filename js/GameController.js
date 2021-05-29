@@ -102,6 +102,7 @@ class GameController {
         orphansManager.render();
         break;
       case this.STATES.GAMEOVER:
+        song.stop();
         background(51);
         textSize(75);
         textAlign(CENTER);
@@ -117,5 +118,4 @@ class GameController {
         break;
     }
   }
-  
 }

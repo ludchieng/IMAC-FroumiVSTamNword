@@ -73,7 +73,9 @@
     </div>
 
 
-    <div class="footer"><p>Game created by <a href="https://fr.wikipedia.org/wiki/Tunnel_h%C3%A9lico%C3%AFdal">Ludwig CHIENG</a> & <a href="https://www.theogautier.fr">Théo GAUTIER</a></p></div>
+    <div class="footer">
+      <p>Game created by <a href="https://fr.wikipedia.org/wiki/Tunnel_h%C3%A9lico%C3%AFdal" target="_blank">Ludwig CHIENG</a> & <a href="https://www.theogautier.fr" target="_blank">Théo GAUTIER</a></p>
+    </div>
     
     
     
@@ -83,6 +85,7 @@
     <!-- <script src="js/quicksettings.js" type="text/javascript"></script> -->
     <!-- <script src="js/p5.gui.js" type="text/javascript"></script> -->
     <script src="js/p5/p5.play.js" type="text/javascript"></script>
+    <script src="js/p5/p5.sound.min.js"></script>
     <script src="js/custom.js" type="text/javascript"></script>
 
     <script src="js/Proba.js" type="text/javascript"></script>
@@ -131,8 +134,10 @@
       switch (gController.state) {
         case gController.STATES.INGAME:  
           gController.changeStateTo(gController.STATES.PAUSE);
+          song.pause();
           break;
         case gController.STATES.PAUSE:
+          song.play()
           gController.changeStateTo(gController.STATES.INGAME);
           break;
       }
@@ -147,6 +152,7 @@
         gController.changeStateTo(gController.STATES.INGAME);
       }, 60);
       start.style.display = "none";
+      song.play();
     });
 
     
