@@ -39,7 +39,7 @@ function setup() {
   frameRate(FRAMERATE);
   createCanvas(900, 630);
   gController = new GameController();
-  song.setVolume(0.5);
+  song.setVolume(0.3);
 }
 
 function draw() {
