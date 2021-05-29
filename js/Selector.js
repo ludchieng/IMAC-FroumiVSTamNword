@@ -30,7 +30,6 @@ class Selector {
 
   update() {
     for (const k in this.KEYS) {
-      //console.log(k);
       if (keyWentDown(k))
         this.idxSelected = this.KEYS[k];
     }

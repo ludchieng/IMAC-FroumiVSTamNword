@@ -2,10 +2,10 @@ class Zombie {
 
   constructor(
     i, j,
+    health = 150 + 75 * zombiesArmy.zCounter.roundNumber(),
+    atk = 20 + 5 * zombiesArmy.zCounter.roundNumber(),
+    speed = Proba.normalDriven(50, 2, 45, 55) / FRAMERATE * (.8+.15*zombiesArmy.zCounter.roundNumber()),
     texture = TEX.TAMNWORD,
-    health = 200,
-    atk = 35,
-    speed = Proba.normalDriven(50, 2, 45, 55) / FRAMERATE,
     )
   {
     this.SPEED = speed;

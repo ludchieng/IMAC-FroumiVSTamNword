@@ -6,7 +6,7 @@ class Tank extends Plant {
     }
   
     getWeight() {
-        return 20;
+        return 40;
     }
   
     update() {

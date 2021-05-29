@@ -2,7 +2,7 @@ class ZombiesCounter {
   
   constructor(onNextRound, onNextWave, onNextGroup) {
     this.ROUNDS_COMPOSITION = [
-      [3, 2, 5, 7, 10], [20, 50, 50], [50, 70, 120, 150], [200]
+      [2, 3], [3, 2, 2, 2], [7, 10], [5, 7], [8, 9], [7, 10], [7, 12], [5, 5], [8, 8], [7, 3, 9]
     ];
     this.indices = {
       round: 0,
@@ -46,7 +46,6 @@ class ZombiesCounter {
   }
 
   increment() {
-
     this.indices.group++;
     if (this.onNextGroup)
       this.onNextGroup();

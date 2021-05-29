@@ -6,8 +6,8 @@ class ZombiesArmy {
     this.timeInterZombies = this.TIME_INTER_ZOMBIES_NOMINAL;
     this.STATES = { STANDBY: -1, INTERZOMBIE:0, INTERWAVE:1, INTERROUND:2 };
 
-    this.ZOMBIES_GROUP_SIZE_EXPECTED_NOMINAL = 1;
-    this.zombiesGroupSizeExpected = this.ZOMBIES_GROUP_SIZE_EXPECTED_NOMINAL;
+    this.ZOMBIES_GROUP_SIZE_EXPECTED_FACTOR_NOMINAL = 1;
+    this.zombiesGroupSizeExpectedFactor = this.ZOMBIES_GROUP_SIZE_EXPECTED_FACTOR_NOMINAL;
 
     this.state = this.STATES.STANDBY;
     this.zombies = [];
@@ -17,6 +17,7 @@ class ZombiesArmy {
       // onNextRound
       this.state = this.STATES.INTERROUND;
       this.cooldown = this.createCooldownRound();
+      console.log("Round #", this.zCounter.roundNumber());
     },() => {
       // onNextWave
       this.state = this.STATES.INTERWAVE;
@@ -53,7 +54,7 @@ class ZombiesArmy {
           this.summonZombieGroup();
           this.cooldown = this.createCooldownZombie();
           this.zCounter.increment();
-          console.log('next zombie group in', this.cooldown, 'frames')
+          console.log('next zombie group in', this.cooldown.toFixed(0), 'frames')
         }
         break;
 
@@ -81,7 +82,10 @@ class ZombiesArmy {
   }
 
   summonZombieGroup(lineOrLinesArray) {
-    const count = Proba.poissonDriven(this.zombiesGroupSizeExpected, 1, 6, 0);
+    const count = Proba.poissonDriven(
+      this.zombiesGroupSizeExpectedFactor - 1 + this.zCounter.roundNumber() / 2,
+      1, 1 + this.zCounter.roundNumber() * 2,
+      0);
     if (count > 1) console.log("Summoned", count, "zombies!")
     for (let i=0; i < count; i++)
       this.summonZombie(lineOrLinesArray);

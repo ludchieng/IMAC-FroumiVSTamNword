@@ -51,9 +51,9 @@ const CARDS = [
         content:"Plus de tamanoirs (20s).",
         event: 3,
         effect: () => {
-            zombiesArmy.zombiesGroupSizeExpected = zombiesArmy.ZOMBIES_GROUP_SIZE_EXPECTED_NOMINAL *2;
+            zombiesArmy.zombiesGroupSizeExpectedFactor = zombiesArmy.ZOMBIES_GROUP_SIZE_EXPECTED_FACTOR_NOMINAL *2;
             setTimeout(() => {
-                zombiesArmy.zombiesGroupSizeExpected = zombiesArmy.ZOMBIES_GROUP_SIZE_EXPECTED_NOMINAL;
+                zombiesArmy.zombiesGroupSizeExpectedFactor = zombiesArmy.ZOMBIES_GROUP_SIZE_EXPECTED_FACTOR_NOMINAL;
             }, 20000);
         }
     },
