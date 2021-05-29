@@ -4,6 +4,11 @@ class GameController {
     this.STATES = { MENU:0, INGAME:1, GAMEOVER:2 };
     this.state = this.STATES.MENU;
     this.menu = new Menu();
+
+    // this.time = 0;
+    this.modal = new Modal();
+    this.COOLDOWN_MODAL = FRAMERATE*2;
+    this.cooldown = 0;
   }
 
   handleTileClick(i, j) {
@@ -51,6 +56,18 @@ class GameController {
         tilemap.update();
         player.update();
         zombiesArmy.update();
+
+     
+        if(this.cooldown === this.COOLDOWN_MODAL && !this.modal.isActivated) {
+          let card = Proba.pickUniformlyFrom(CARDS);
+          console.log(card);
+          this.modal.modalSetUp(card.type, card.content, card.event);
+          this.modal.isActivated = true;
+          this.cooldown = 0;
+        } else if(!this.modal.isActivated) {
+          this.cooldown++;
+        }
+
         orphansManager.update();
         break;
       case this.STATES.GAMEOVER:
@@ -71,7 +88,6 @@ class GameController {
         tilemap.render();
         player.render();
         zombiesArmy.render();
-        orphansManager.render();
         break;
       case this.STATES.GAMEOVER:
         

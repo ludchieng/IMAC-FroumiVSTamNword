@@ -9,6 +9,8 @@
 
     <script src="js/Modal.js" type="text/javascript"></script>
 
+    <!-- <p class="time">00 : 00</p> -->
+
     <div class="box-2">
       <div class="btn btn-one" onclick="fadeIn()">
         <span>MODAL</span>
@@ -17,15 +19,15 @@
 
 
     <div id="modal-container">
-      <div class="modal">
-        <div class="modal-front">
+      <div class="modal" id="modal">
+        <div class="modal-front" id="front">
           <h1 class="title inner-shadow">?</h1>
         </div>
         <div class="modal-back">
           <h1 class="title inner-shadow">BONUS</h1>
           <p class="modal-desc">Toutes vos froumis classiques deviennent des froumis rouges. (6sec)</p>
           <div class="box-1">
-            <div class="btn btn-one" onclick="fadeOut()">
+            <div class="btn btn-one" id="back">
               <span>BACK</span>
             </div>
           </div>
@@ -71,6 +73,7 @@
     <script src="js/Tile.js" type="text/javascript"></script>
     <script src="js/TileMap.js" type="text/javascript"></script>
     <script src="js/Player.js" type="text/javascript"></script>
+    <script src="js/Card.js" type="text/javascript"></script>
 
     <script src="js/sketch.js" type="text/javascript"></script>
 
