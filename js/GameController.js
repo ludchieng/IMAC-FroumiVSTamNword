@@ -37,9 +37,11 @@ class GameController {
         this.menu.show();
         break;
       case this.STATES.INGAME:
+        document.getElementById("pause-container").style.display = "inherit";
         this.menu.hide();
         break;
       case this.STATES.GAMEOVER:
+        document.getElementById("pause-container").style.display = "none";
         break;
       case this.STATES.PAUSE:
         

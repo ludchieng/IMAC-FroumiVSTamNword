@@ -24,22 +24,26 @@ body {
   color: white;
 }
 
-#start {
-  cursor: pointer;
-  padding: 20px 70px;
-  font-size: 34px;
-  border: none;
-  color: #283a21;
-  background-color: #65e034;
-  box-shadow: 0 1px 10px #1d2918;
+.yellow {
+  background-color: #ffc728;
+  width: 100%;
+  height: 33.333%;
   position: absolute;
-  top: 70%;
-  left: 50%;
-  transform: translate(-50%,-50%);
+  bottom: 0;
+  left: 0;
 }
 
-#start:hover {
-  background-color: #85fc56;
+.bg-img {
+  background-image: url("../assets/bg.jpg");
+  background-size: cover;
+  filter: blur(7px);
+  opacity: 0.1;
+
+  width: 100%;
+  height: 67%;
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 
 #modal-container {
@@ -59,8 +63,10 @@ body {
   top: 27%;
   left: 40%;
   /* transform: translate(-50%, -50%); */
-  width: 20%;
-  height: 45%;
+  min-width: 20%;
+  min-height: 45%;
+  height: 50%;
+  width: 30;
   border-radius: 10px;
   transform-style: preserve-3d;
   transition: all 0.8s ease;
@@ -89,15 +95,10 @@ body {
 .modal-front h1 {
   position: relative;
   top: 22%;
-  /* color: #fafafa;
-  box-shadow: ; */
-  
-  
 }
 
 .title {
   font-size: 3rem;
-  
 }
 
 .inner-shadow {
@@ -131,24 +132,26 @@ body {
   left: 12.5%;
 }
 
-.box-1 { 
+.modal-desc-front {
+  width: 75%;
+  text-align: center;
+  position: relative;
+  left: 12.5%;
+  top: 40%;
+}
+
+.box-1{ 
   height: 33.33%;
 	width: 100%; 
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #ffc728; 
+  background-color: #ffc728;
+  position: absolute;
+  bottom: 0; 
 }
 
-.box-2 { 
-  height: 33.33%;
-  width: 13%;
-  text-align: center;
-  background-color: #ffc728; 
-  opacity: 0;
-}
-
-.btn {
+.btn{
 	line-height: 50px;
 	height: 50px;
 	text-align: center;
@@ -161,6 +164,7 @@ body {
       BUTTON ONE
 ========================
 */
+
 .btn-one {
 	color: #FFF;
 	transition: all 0.3s;
@@ -176,7 +180,7 @@ body {
 	left: 0;
 	width: 100%;
 	height: 100%;
-	z-index: 1;
+	z-index: 3;
 	opacity: 0;
 	transition: all 0.3s;
 	border-top-width: 1px;
@@ -208,4 +212,78 @@ body {
 .btn-one:hover::after {
 	opacity: 0;	
 	transform: scale(0.1, 1);
+}
+
+
+#pause-container, #button-container {
+  width: 900px;
+  height: 630px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  background-color: transparent;
+  transform: translate(-50%,-50%);
+  z-index: 2;
+  pointer-events: none;
+}
+
+#pause-container {
+  display: none;
+}
+
+#start {
+  z-index: 1;
+  width: 20%;
+  height: auto;
+  position: relative;
+  left: 50%;
+  top: 100%;
+  transform: translate(-50%,-250%);
+  pointer-events: all;
+  background-color: transparent;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+#pause {
+  position: relative;
+  top: 7%;
+  padding: 0;
+  float: right;
+  right: 10%;
+  width: 30px;
+  height: auto;
+  cursor: pointer;
+  transition: 0.3s ease-in-out;
+  z-index: 1000;
+  pointer-events: all;
+}
+
+#pause .btn-pause {
+  width: 30px;
+  height: 30px;
+  background: #d4d4d4;
+  transition: inherit;
+  clip-path: polygon(0 0, 50% 25%, 50% 75%, 50% 75%, 50% 25%, 100% 50%, 100% 50%, 0 100%);
+}
+
+#pause.playing .btn-pause {
+   clip-path: polygon(0 0, 40% 0, 40% 100%, 60% 100%, 60% 0, 100% 0, 100% 100%, 0 100%);
+}
+
+.footer p {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  text-align: center;
+  transform: translateX(-50%);
+  font-size: 0.5rem;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  color: #565656;
+  font-style: italic;
+}
+
+.footer a {
+  text-decoration: none;
+  font-size: 0.5rem;
+  color: #000;
 }

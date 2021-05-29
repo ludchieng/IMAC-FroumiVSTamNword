@@ -11,17 +11,29 @@
 
     <!-- <p class="time">00 : 00</p> -->
 
-    <div id="pause" class="box-2">
-      <div class="btn btn-one">
-        <span>MODAL</span>
+    <div class="bg-img"></div>
+    <div class="yellow"></div>
+
+    <div id="button-container">
+      <div id="pause-container">
+        <div id="pause" class="inner-shadow">
+          <div class="btn-pause"></div>
+        </div>
+      </div>
+      <div class="box-1" id="start">
+        <div class="btn btn-one">
+          <span>START</span>
+        </div>
       </div>
     </div>
 
+    
 
     <div id="modal-container">
       <div class="modal" id="modal">
         <div class="modal-front" id="front">
           <h1 class="title inner-shadow">?</h1>
+          <p class="modal-desc-front inner-shadow">Cliquez pour rotater la carte.</p>
         </div>
         <div class="modal-back">
           <h1 class="title inner-shadow">BONUS</h1>
@@ -34,6 +46,9 @@
         </div>
       </div>
     </div>
+
+
+    <div class="footer"><p>Game created by <a href="https://fr.wikipedia.org/wiki/Tunnel_h%C3%A9lico%C3%AFdal">Ludwig CHIENG</a> & <a href="https://www.theogautier.fr">Théo GAUTIER</a></p></div>
     
     
     
@@ -84,8 +99,10 @@
       e.preventDefault();
     });
 
-    document.getElementById('pause').addEventListener('click', () => 
-      {
+    const playpause = document.querySelector('#pause');
+
+    playpause.addEventListener('click', () => {
+      playpause.classList.toggle('playing');
       switch (gController.state) {
         case gController.STATES.INGAME:  
           gController.changeStateTo(gController.STATES.PAUSE);
@@ -95,6 +112,17 @@
           break;
       }
     });
+
+
+    const start = document.querySelector('#start');
+
+    start.addEventListener('click', () => {
+      setTimeout(() => {
+        gController.changeStateTo(gController.STATES.INGAME);
+      }, 60);
+      start.style.display = "none";
+    });
+
     
     </script>
   </body>

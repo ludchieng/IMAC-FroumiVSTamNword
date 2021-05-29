@@ -2,8 +2,8 @@ class ShooterRebou extends Shooter {
 
   constructor(i, j) {
     super(i, j, 250);
-    this.sprite.addAnimation('vener', TEX.FROUMI_VENER);
-
+    this.sprite.addAnimation('normal', TEX.FROUMI_VENER);
+    this.sprite.addAnimation('saiyan', TEX.SAIYAN);
     this.TIME_INTER_SHOOT_NOMINAL = .5 * FRAMERATE;
     this.timeInterShoot = this.TIME_INTER_SHOOT_NOMINAL;
 

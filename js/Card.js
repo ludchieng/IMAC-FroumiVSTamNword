@@ -15,9 +15,10 @@ const CARDS = [
             }
             let tile = shootersTile[Proba.uniformInt(shootersTile.length)];
             tile.plant.timeInterShoot = tile.plant.TIME_INTER_SHOOT_NOMINAL / 10;
-            // AJOUTER AURA
+            tile.plant.sprite.changeAnimation('saiyan');
             setTimeout(() => {
                 tile.plant.timeInterShoot = tile.plant.TIME_INTER_SHOOT_NOMINAL;
+                tile.plant.sprite.changeAnimation('normal');
             }, 15000);
         }
     }, 
