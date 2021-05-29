@@ -56,8 +56,8 @@ class GameController {
         tilemap.update();
         player.update();
         zombiesArmy.update();
+        orphansManager.update();
 
-     
         if(this.cooldown === this.COOLDOWN_MODAL && !this.modal.isActivated) {
           let card = Proba.pickUniformlyFrom(CARDS);
           console.log(card);
@@ -67,8 +67,6 @@ class GameController {
         } else if(!this.modal.isActivated) {
           this.cooldown++;
         }
-
-        orphansManager.update();
         break;
       case this.STATES.GAMEOVER:
         
@@ -88,6 +86,7 @@ class GameController {
         tilemap.render();
         player.render();
         zombiesArmy.render();
+        orphansManager.render();
         break;
       case this.STATES.GAMEOVER:
         
