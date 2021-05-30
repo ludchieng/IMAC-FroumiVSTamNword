@@ -16,6 +16,18 @@ body {
   overflow: hidden;
 }
 
+#message {
+  margin: 48px auto 0 auto;
+  max-width: 900px;
+  color: #fff;
+  font-size: 16px;
+  text-align: center;
+}
+
+#message-title {
+  font-size: 28px;
+}
+
 .time {
   color: white;
 }
