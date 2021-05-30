@@ -38,6 +38,12 @@ class TileMap {
     if (SelectedPlantClass === null)
       return false;
     this.get(i, j).plant = new SelectedPlantClass(i, j);
+    switch (SelectedPlantClass) {
+      case Sunflower: stats.sunflowersCount++; break;
+      case ShooterNormal: stats.shootersNormalCount++; break;
+      case ShooterRebou: stats.shootersEnragedCount++; break;
+      case Tank: stats.tanksCount++; break;
+    }
     return true;
   }
 

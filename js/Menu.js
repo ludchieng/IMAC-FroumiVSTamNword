@@ -34,8 +34,6 @@ class Menu {
   }
 
   update() {
-    if (keyWentDown(ENTER))
-      gController.changeStateTo(gController.STATES.INGAME);
   }
 
   render() {

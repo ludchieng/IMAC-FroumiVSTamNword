@@ -8,6 +8,7 @@ class GameController {
     this.modal = new Modal();
     this.COOLDOWN_MODAL = FRAMERATE*30;
     this.cooldown = 0;
+    this.statsPanel = new StatsPanel();
   }
 
   handleTileClick(i, j) {
@@ -39,6 +40,7 @@ class GameController {
       case this.STATES.INGAME:
         document.getElementById("pause-container").style.display = "inherit";
         this.menu.hide();
+        //setTimeout(() => this.changeStateTo(this.STATES.GAMEOVER), 50) //TODO remove
         break;
       case this.STATES.GAMEOVER:
         document.getElementById("pause-container").style.display = "none";
@@ -102,15 +104,7 @@ class GameController {
         orphansManager.render();
         break;
       case this.STATES.GAMEOVER:
-        background(51);
-        textSize(75);
-        textAlign(CENTER);
-        fill(255,255,255);
-        text("THE END", width/2, height/4);
-
-        textSize(20);
-        text("Score : ", width/2, height/2);
-        text("Kills : ", width/2, height/1.8);
+        this.statsPanel.render();
         break;
       case this.STATES.PAUSE:
         //draw 2 rectangles de morts

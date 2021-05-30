@@ -91,6 +91,10 @@ class ZombiesArmy {
     if (count > 1) console.log("Summoned", count, "zombies!")
     for (let i=0; i < count; i++)
       this.summonZombie(lineOrLinesArray);
+      
+    let s = stats.zombiesCountByGroup;
+    (s[count]) ? s[count]++ : s[count] = 1;
+
     return count;
   }
 
@@ -110,10 +114,14 @@ class ZombiesArmy {
       // Ignore lineOrLinesArray
       line = Proba.generateIndexWeightly(tilemap.getLinesWeights().map((e) => 100/e));
     }
-    if (Proba.bernoulli(config.enragedZombiesSuccessRate))
+    stats.zombiesSpawnLine[line]++;
+    if (Proba.bernoulli(config.enragedZombiesSuccessRate)) {
       this.zombies.push(new ZombieVener(tilemap.SIZE_X, line));
-    else
+      stats.zEnragedCount++;
+    } else {
       this.zombies.push(new Zombie(tilemap.SIZE_X, line));
+      stats.zNormalCount++;
+    }
   }
 
 }

@@ -4,6 +4,17 @@ let player;
 let zombiesArmy;
 let gController;
 let orphansManager;
+let stats = {
+  zNormalCount: 0,
+  zEnragedCount: 0,
+  sunflowersCount: 0,
+  shootersNormalCount: 0,
+  shootersEnragedCount: 0,
+  tanksCount: 0,
+  zombiesSpawnLine: [0, 0, 0, 0, 0, 0, 0],
+  sunflowerGainDuration: {},
+  zombiesCountByGroup: {},
+}
 
 let config = {
   sunflowerGainSpeed: 1,
