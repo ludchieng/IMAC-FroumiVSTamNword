@@ -4,6 +4,7 @@ let player;
 let zombiesArmy;
 let gController;
 let orphansManager;
+let song;
 let stats = {
   zNormalCount: 0,
   zEnragedCount: 0,
@@ -42,12 +43,14 @@ function preload() {
     TANK: loadImage('assets/rock.png'),
     SAIYAN: loadAnimation('assets/saiyan0000.png', 'assets/saiyan0005.png'),
   }
+  song = loadSound('assets/song.mp3');
 }
 
 function setup() {
   frameRate(FRAMERATE);
   createCanvas(900, 630);
   gController = new GameController();
+  song.setVolume(0.3);
 }
 
 function draw() {
