@@ -34,7 +34,7 @@ const testGenerateIndexWeightly = (n, array) => {
 const testPoisson = (n) => {
   let res = {};
   for (let i = 0; i < n; i++) {
-    const x = Proba.poisson();
+    const x = Proba.poisson(1);
     (res[x]) ? res[x]++ : res[x] = 1;
   }
 
@@ -131,3 +131,7 @@ testNormalDriven(1000000, 0, 1, -3, 3)
 testBernoulli(10000, .35)
 testExponential(10000, 1)
 testExponentialDriven(100000, 1, 10, 13, 10)
+
+testExponential(10000, 1)
+testExponential(5000, 1)
+testExponential(1000, 1)

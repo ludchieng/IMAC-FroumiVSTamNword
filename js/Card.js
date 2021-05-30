@@ -2,7 +2,7 @@ const CARDS = [
 
     {   
         type:"BONUS",   
-        content:"Quelques froumis peuvent devenir des mitraillettes.",
+        content:"Certaines froumis peuvent devenir des mitraillettes.",
         event: 1,
         effect: () => {
             for (let col of tilemap.tiles) {
